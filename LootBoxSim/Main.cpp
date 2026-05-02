@@ -47,6 +47,7 @@
 
 	* balancing - upgrades, costs, chances, etc.
 	* better UI's
+	* change shop to have upgrades/buy boxes
 	
 /*****************************************/
 
