@@ -1,0 +1,194 @@
+Basic, Cracked Wooden Sword, 2
+Basic, Bent Iron Spoon, 1
+Basic, Torn Cloth Bandage, 2
+Basic, Dull Training Dagger, 3
+Basic, Broken Compass, 2
+Basic, Rusted Nail Club, 2
+Basic, Worn Leather Strap, 1
+Basic, Chipped Stone Axe, 3
+Basic, Faded Map Fragment, 2
+Basic, Empty Potion Bottle, 1
+Basic, Bent Copper Coin, 2
+Basic, Frayed Rope Loop, 2
+Basic, Scratched Shield Fragment, 3
+Basic, Old Torch Handle, 2
+Basic, Cracked Wooden Buckler, 3
+Basic, Rusty Key, 2
+Basic, Tattered Adventurer Cloak, 3
+Basic, Dull Iron Shard, 2
+Basic, Broken Arrow Shaft, 1
+Basic, Weathered Travel Boots, 3
+Common,Worn Iron Sword,14
+Common,Rusty Dagger,9
+Common,Training Wooden Sword,7
+Common,Dull Hunting Knife,8
+Common,Cracked Mace,11
+Common,Leather Scrap Armor,10
+Common,Worn Wooden Shield,9
+Common,Broken Compass,7
+Common,Flint Starter Kit,6
+Common,Stale Bread,5
+Common,Rubber Chicken,6
+Common,Old Boot,5
+Common,Suspicious Potion,8
+Common,Faded Chain Vest,12
+Common,Torn Leather Boots,8
+Common,Dented Iron Helm,11
+Common,Frayed Archer Hood,7
+Common,Stitched Cloth Vest,8
+Common,Rough Iron Buckler,12
+Common,Frayed Guard Gloves,7
+Common,Old Travel Cloak,9
+Common,Simple Lockpick Set,11
+Common,Traveler's Map,8
+Common,Worn Rope Coil,7
+Common,Iron Cooking Pan,9
+Common,Worn Traveling Cloak,9
+Common,Scratched Wooden Armor Plates,10
+Common,Bent Lockpick,8
+Common,Empty Potion Flask,6
+Common,Half Eaten Apple,5
+Common,Mysterious Rock,7
+Common,Lucky Button,9
+Common,Weathered Longsword,14
+Common,Rusty Hatchet,11
+Common,Practice Staff,8
+Common,Nicked Scimitar,12
+Common,Blunt Warhammer,14
+Common,Old Hunting Bow,12
+Common,Cracked Throwing Knife,8
+Common,Tattered Backpack,9
+Common,Worn Map Fragment,7
+Common,Half-Dull Whetstone,8
+Common,Old Lantern (Low Oil),10
+Common,Soggy Sandwich,5
+Common,Confused Chicken Feather,6
+Common,Rock That Might Be Important,7
+Common,Unlucky Coin,5
+Common,Bent Short Sword,12
+Common,Chipped Axe,13
+Common,Old Spear,11
+Common,Ancient Spoon,8
+Common,Left Sock (No Match),5
+Common,Slightly Cursed Potato,7
+Rare,Silver Blade,42
+Rare,Ice-Bound Bow,45
+Rare,Storm Axe,48
+Rare,Runed Dagger,36
+Rare,Steel Recurve Bow,44
+Rare,Enchanted Short Sword,40
+Rare,Glacial Spear,46
+Rare,Thunder Hammer,50
+Rare,Shadow Edge Blade,44
+Rare,Honed War Scimitar,39
+Rare,Blessed Iron Shield,38
+Rare,Arcane Leather Armor,42
+Rare,Runic Cloak,40
+Rare,Crystal Reinforced Helm,43
+Rare,Sealed Adventurer's Pack,35
+Rare,Ancient Compass (True North),38
+Rare,Elixir of Minor Fortitude,34
+Rare,Swift Lockpick Set,35
+Rare,Reinforced Rope Coil,32
+Rare,Lantern of Steady Flame,38
+Rare,Traveler's Journal (Encrypted),36
+Rare,Gold-Plated Lucky Coin,37
+Rare,Charm of Slight Fortune,41
+Rare,Mystic Whetstone,33
+Rare,Phantom Throwing Knives,45
+Rare,Frost-Touched Mace,48
+Rare,Stormcaller Staff,50
+Rare,Runebound Buckler,39
+Rare,Silent Step Hood,38
+Rare,Embersteel Boots,42
+Rare,Arcblade Prototype,46
+Rare,Frostbite Crossbow,46
+Rare,Venom-Tipped Blade,40
+Rare,Electrum Battle Axe,49
+Rare,Runescribed Longbow,43
+Rare,Windcaller Rapier,42
+Rare,Emberglow Shield,38
+Rare,Stonebreaker Flail,48
+Rare,Arcane Scout Armor,41
+Rare,Nightstalker Cloak,37
+Rare,Deepsea Compass,39
+Rare,Traveler's Sigil Pack,36
+Rare,Charged Whetstone,34
+Rare,Phantom Step Boots,42
+Rare,Minor Luck Talisman,40
+Epic,Voidfang Blade,160
+Epic,Stormbreaker Great Axe,190
+Epic,Crystal Soul Bow,175
+Epic,Arcane Executioner Sword,185
+Epic,Shadowflame Dagger,150
+Epic,Frostfire Spear,180
+Epic,Thunderlord Hammer,200
+Epic,Void-Touched Katana,188
+Epic,Runebreaker Claymore,195
+Epic,Starforged Scimitar,170
+Epic,Dragonbone War Bow,165
+Epic,Eclipse Edge,205
+Epic,Phantom Reaver Blade,185
+Epic,Ancient Skybreaker Staff,210
+Epic,Tempest Channeler Rod,175
+Epic,Netherwoven Battle Armor,190
+Epic,Spiritbound Guardian Shield,155
+Epic,Voidsteel Chestplate,180
+Epic,Stormforged Helm,165
+Epic,Crimson Arcane Cloak,160
+Epic,Graviton Boots,170
+Epic,Runic Phantom Hood,150
+Epic,Astral Adventurer Pack,140
+Epic,Chrono Compass,175
+Epic,Soulbinder Amulet,188
+Epic,Elixir of Greater Power,135
+Epic,Shadowstep Lockpick Set,130
+Epic,Everburn Lantern,150
+Epic,Ancient Relic Map,140
+Epic,Infinity Edge Fragment,210
+Epic,Voidglass Whetstone,155
+Epic,Phantom Chain Whip,185
+Epic,Stormcall Chakram,170
+Epic,Obsidian Rune Shield,175
+Epic,Duskblade Prototype,195
+Epic,Starfall Throwing Knives,160
+Legendary,Excalibur,620
+Legendary,Void Reaver,700
+Legendary,Dragonheart Greatsword,650
+Legendary,Storm God's Wrath Axe,690
+Legendary,Abyssal Edge of Eternity,740
+Legendary,Archangel's Blade,720
+Legendary,Worldbreaker Hammer,760
+Legendary,Oblivion Fang Katana,750
+Legendary,Chronos Splitter Blade,670
+Legendary,Infernal Soulreaper Scythe,730
+Legendary,Starforge Greatbow,640
+Legendary,Astral Dominion Armor,720
+Legendary,Void Emperor Chestplate,760
+Legendary,Eclipse Sovereign Cloak,610
+Legendary,Orb of Absolute Fortune,740
+Legendary,Crown of Eternal Luck,780
+Legendary,Amulet of Broken Time,680
+Legendary,Key of the Void Gate,710
+Legendary,Relic of First Light,690
+Legendary,Godslayer Fragment,800
+Mythic,Blade of the First Dawn,3200
+Mythic,Voidheart Devourer,4100
+Mythic,Reality Splitter Greatsword,4600
+Mythic,Chronoblade of Endless Time,4400
+Mythic,Worldshaper Titan Hammer,5000
+Mythic,Stellar Convergence Bow,3800
+Mythic,Dragon Soul Ascendant Spear,4200
+Mythic,Eternal Eclipse Katana,4300
+Mythic,Infinity Spiral Staff,3900
+Mythic,Godshard Reaper Scythe,4700
+Mythic,Armor of the Celestial Emperor,4100
+Mythic,Void Sovereign Plate,4500
+Mythic,Cloak of the Infinite Night,3600
+Mythic,Crown of Absolute Fortune,4800
+Mythic,Amulet of Reality Anchoring,3700
+Mythic,Orb of Primordial Power,4400
+Mythic,Compass of Lost Universes,3500
+Mythic,Key to the Final Gate,4600
+Mythic,Relic of the Forgotten Gods,4200
+Mythic,Fragment of Creation,5000

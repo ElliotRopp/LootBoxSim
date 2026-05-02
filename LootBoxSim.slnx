@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="LootBoxSim/LootBoxSim.vcxproj" Id="68fe11dc-4a71-46b5-b921-c799c7e11013" />
+</Solution>

@@ -1,0 +1,48 @@
+COINS:145
+COUNT:42
+PITY:3,3,2
+COLLECTION:175,176,84,33,4,5,3
+UPGRADES:3,1,1,1
+INVENTORY:
+Basic, Weathered Travel Boots,3
+Common,Weathered Longsword,14
+Basic, Broken Compass,2
+Common,Bent Short Sword,12
+Basic, Tattered Adventurer Cloak,3
+Basic, Worn Leather Strap,1
+Basic, Rusted Nail Club,2
+Common,Worn Rope Coil,7
+Common,Half Eaten Apple,5
+Common,Lucky Button,9
+Basic, Torn Cloth Bandage,2
+Basic, Frayed Rope Loop,2
+Basic, Dull Iron Shard,2
+Common,Rusty Dagger,9
+Basic, Broken Arrow Shaft,1
+Basic, Cracked Wooden Sword,2
+Common,Leather Scrap Armor,10
+Common,Training Wooden Sword,7
+Basic, Cracked Wooden Buckler,3
+Basic, Worn Leather Strap,1
+Basic, Broken Compass,2
+Basic, Rusty Key,2
+Basic, Rusted Nail Club,2
+Basic, Frayed Rope Loop,2
+Basic, Frayed Rope Loop,2
+Basic, Bent Copper Coin,2
+Basic, Broken Arrow Shaft,1
+Basic, Chipped Stone Axe,3
+Basic, Tattered Adventurer Cloak,3
+Basic, Chipped Stone Axe,3
+Basic, Chipped Stone Axe,3
+Basic, Faded Map Fragment,2
+Common,Bent Short Sword,12
+Basic, Empty Potion Bottle,1
+Basic, Torn Cloth Bandage,2
+Common,Tattered Backpack,9
+Basic, Empty Potion Bottle,1
+Basic, Weathered Travel Boots,3
+Basic, Faded Map Fragment,2
+Basic, Dull Iron Shard,2
+Common,Worn Map Fragment,7
+Rare,Swift Lockpick Set,35
