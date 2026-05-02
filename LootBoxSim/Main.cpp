@@ -75,7 +75,7 @@ void showMainMenu(const Inventory& inv, const Upgrades& upgrades, const LootBox&
 	std::cout << "=================================\n\n";
 
 	std::cout << "Coins: " << inv.coins
-		<< "    Items: " << inv.count << "\n\n";
+		<< "    Items: " << inv.items.size() << "\n\n";
 
 	std::cout << "Upgrades:\n";
 	std::cout << "  Luck Level:      " << upgrades.luck_level << "\n";
@@ -125,7 +125,7 @@ void clearInputBuffer()
 
 int main()
 {
-	srand(time(0));
+	srand(static_cast<unsigned int>(time(0)));
 
 	Inventory inv;
 	LootBox box;

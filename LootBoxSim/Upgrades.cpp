@@ -28,7 +28,7 @@ int Upgrades::getMultiOpenAmount()
     return 1;
 }
 
-void Upgrades::show(int coins)
+void Upgrades::show(double coins)
 {
     std::cout << "\n=================================\n";
     std::cout << "             UPGRADES\n";
@@ -46,7 +46,7 @@ void Upgrades::show(int coins)
     int currentInv = getInventoryBonus();
     int nextInv = (inventory_level + 1) * 2;
 
-    int currentSell = (getSellBonus() - 1.0) * 100;
+    double currentSell = (getSellBonus() - 1.0) * 100;
     int nextSell = (sell_level + 1) * 20;
 
     std::cout << "1. Luck Upgrade\n";
@@ -115,7 +115,7 @@ void Upgrades::show(int coins)
     std::cout << "Enter choice: ";
 }
 
-void Upgrades::buyLuck(int& coins)
+void Upgrades::buyLuck(double& coins)
 {
     if (luck_level >= 10)
     {
@@ -137,7 +137,7 @@ void Upgrades::buyLuck(int& coins)
     }
 }
 
-void Upgrades::buySell(int& coins)
+void Upgrades::buySell(double& coins)
 {
     if (sell_level >= 10)
     {
@@ -159,7 +159,7 @@ void Upgrades::buySell(int& coins)
     }
 }
 
-void Upgrades::buyInventory(int& coins)
+void Upgrades::buyInventory(double& coins)
 {
     if (inventory_level >= 10)
     {
@@ -181,7 +181,7 @@ void Upgrades::buyInventory(int& coins)
     }
 }
 
-void Upgrades::buyMultiOpen(int& coins)
+void Upgrades::buyMultiOpen(double& coins)
 {
     if (multi_open_level >= 3)
     {

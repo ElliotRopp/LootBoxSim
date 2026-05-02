@@ -13,9 +13,9 @@ public:
 	double getSellBonus();
 	int getInventoryBonus();
 	int getMultiOpenAmount();
-	void show(int coins);
-	void buyLuck(int& coins);
-	void buySell(int& coins);
-	void buyInventory(int& coins);
-	void buyMultiOpen(int& coins);
+	void show(double coins);
+	void buyLuck(double& coins);
+	void buySell(double& coins);
+	void buyInventory(double& coins);
+	void buyMultiOpen(double& coins);
 };

@@ -68,11 +68,6 @@ void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& coll
 			inv.coins = std::stoi(line.substr(6));
 		}
 
-		else if (line.rfind("COUNT:", 0) == 0)
-		{
-			inv.count = std::stoi(line.substr(6));
-		}
-
 		else if (line.rfind("PITY:", 0) == 0)
 		{
 			line.erase(0, 5);
@@ -146,8 +141,6 @@ void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& coll
 			}
 		}
 	}
-
-	inv.count = inv.items.size();
 }
 
 
@@ -171,7 +164,6 @@ void SaveSystem::saveGame(Inventory& inv, Collection& collection, LootBox& box, 
 	}
 
 	file << "COINS:" << inv.coins << "\n";
-	file << "COUNT:" << inv.count << "\n";
 
 
 	file << "PITY:"

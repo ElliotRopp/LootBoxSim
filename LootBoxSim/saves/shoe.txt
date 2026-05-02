@@ -1,7 +1,0 @@
-COINS:425
-COUNT:1
-PITY:1,0,41
-COLLECTION:34,19,13,7,1,1,0
-UPGRADES:1,0,0,0
-INVENTORY:
-Legendary,Infernal Soulreaper Scythe,730
