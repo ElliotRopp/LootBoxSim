@@ -39,6 +39,7 @@
 	X revamp save system
 	X save pity
 	X upgrades
+	X change shop to have upgrades/buy boxes
 
 /***************************************\
 
@@ -47,8 +48,7 @@
 
 	* balancing - upgrades, costs, chances, etc.
 	* better UI's
-	* change shop to have upgrades/buy boxes
-	
+
 /*****************************************/
 
 
@@ -68,7 +68,7 @@
 
 
 
-void showMainMenu(const Inventory& inv, const Upgrades& upgrades, const LootBox& box)
+void showMainMenu(const Inventory& inv, const Upgrades& upgrades, const LootBox& box, const Shop& shop)
 {
 	std::cout << "\n=================================\n";
 	std::cout << "        LOOT BOX SIMULATOR\n";
@@ -76,6 +76,7 @@ void showMainMenu(const Inventory& inv, const Upgrades& upgrades, const LootBox&
 
 	std::cout << "Coins: " << inv.coins
 		<< "    Items: " << inv.items.size() << "\n\n";
+	std::cout << "Current Box: " << shop.boxes[shop.current_box].name << "\n\n";
 
 	std::cout << "Upgrades:\n";
 	std::cout << "  Luck Level:      " << upgrades.luck_level << "\n";
@@ -90,7 +91,7 @@ void showMainMenu(const Inventory& inv, const Upgrades& upgrades, const LootBox&
 
 	std::cout << "\n---------------------------------\n";
 
-	std::cout << "  1. Open Box\n";
+	std::cout << "  1. Open "<< shop.boxes[shop.current_box].name << "\n";
 	std::cout << "  2. Shop\n";
 	std::cout << "  3. Inventory\n";
 	std::cout << "  4. Sell\n";
@@ -162,7 +163,7 @@ int main()
 		else
 		{
 			std::string file = save.chooseSave(save_files);
-			save.loadGame(file, inv, collection, box, upgrades);
+			save.loadGame(file, inv, collection, box, upgrades, shop);
 
 			std::cout << "\nLoading data...\n";
 
@@ -180,7 +181,7 @@ int main()
 
 	while (true)
 	{
-		showMainMenu(inv, upgrades, box);
+		showMainMenu(inv, upgrades, box, shop);
 
 		std::cin >> input;
 
@@ -188,22 +189,18 @@ int main()
 
 		if (input == "1")
 		{
-			BoxType boxtype = shop.boxes[0];
-			//Item reward = box.open(shop.boxes[0].table, "Free Box", collection, inv, upgrades);
+			BoxType& boxtype = shop.boxes[shop.current_box];
 
 			int opens = upgrades.getMultiOpenAmount();
 
 			for (int i = 0; i < opens; i++)
 			{
-				Item reward = box.open(shop.boxes[0].table, "Free Box", collection, inv, upgrades);
+				Item reward = box.open(boxtype.table, boxtype.name, collection, inv, upgrades);
 
 				collection.add(reward.name, reward.rarity);
 				inv.addItem(reward);
 			}
 
-			//collection.add(reward.name, reward.rarity);
-
-			//inv.addItem(reward);
 			clearInputBuffer();
 			waitForEnter();
 		}
@@ -214,33 +211,15 @@ int main()
 			int choice;
 			std::cin >> choice;
 
-			if (choice >= 0 && choice < shop.boxes.size())
+			if (choice > 0)
 			{
-				BoxType boxtype = shop.boxes[choice];
-
-				if (inv.coins >= boxtype.price)
+				if (choice == 1)
 				{
-					inv.coins -= boxtype.price;
-
-					//Item reward = box.open(boxtype.table, boxtype.name, collection, inv, upgrades);
-
-					//collection.add(reward.name, reward.rarity);
-
-					//inv.addItem(reward);
-
-					int opens = upgrades.getMultiOpenAmount();
-
-					for (int i = 0; i < opens; i++)
-					{
-						Item reward = box.open(boxtype.table, boxtype.name, collection, inv, upgrades);
-
-						collection.add(reward.name, reward.rarity);
-						inv.addItem(reward);
-					}
+					shop.upgradeBox(inv.coins);
 				}
-				else
+				else if(choice == 2)
 				{
-					std::cout << "\nNOT ENOUGH COINS!\n";
+					continue;
 				}
 			}
 			clearInputBuffer();
@@ -294,7 +273,7 @@ int main()
 		}
 		else if (input == "7")
 		{
-			save.saveGame(inv, collection, box, upgrades);
+			save.saveGame(inv, collection, box, upgrades, shop);
 
 			std::cout << "\nGOODBYE\n";
 			break;

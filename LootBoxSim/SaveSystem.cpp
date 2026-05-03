@@ -1,6 +1,7 @@
 #include "SaveSystem.h"
 #include "RarityUtils.h"
 #include "Upgrades.h"
+#include "Shop.h"
 
 #include <filesystem>
 #include <iostream>
@@ -47,7 +48,7 @@ std::string SaveSystem::chooseSave(const std::vector<std::string>& saves)
 }
 
 
-void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& collection, LootBox& box, Upgrades& upgrades)
+void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& collection, LootBox& box, Upgrades& upgrades, Shop& shop)
 {
 	std::ifstream file(filename);
 
@@ -66,6 +67,11 @@ void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& coll
 		if (line.rfind("COINS:", 0) == 0)
 		{
 			inv.coins = std::stoi(line.substr(6));
+		}
+
+		else if (line.rfind("BOX:", 0) == 0)
+		{
+			shop.current_box = std::stoi(line.substr(4));
 		}
 
 		else if (line.rfind("PITY:", 0) == 0)
@@ -144,7 +150,7 @@ void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& coll
 }
 
 
-void SaveSystem::saveGame(Inventory& inv, Collection& collection, LootBox& box, Upgrades& upgrades)
+void SaveSystem::saveGame(Inventory& inv, Collection& collection, LootBox& box, Upgrades& upgrades, Shop& shop)
 {
 	if (current_save == "")
 	{
@@ -165,6 +171,7 @@ void SaveSystem::saveGame(Inventory& inv, Collection& collection, LootBox& box, 
 
 	file << "COINS:" << inv.coins << "\n";
 
+	file << "BOX:" << shop.current_box << "\n";
 
 	file << "PITY:"
 		<< box.epic_pity << ","
