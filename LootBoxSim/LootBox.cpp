@@ -78,7 +78,7 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 	Item item;
 	bool pity_triggered = false;
 
-	if (mythic_pity >= 100 && box_name != "Free Box" && box_name != "Basic Box")
+	if (mythic_pity >= 100 && box_name != "Free Box" && box_name != "Basic Box" && box_name != "Gold Box" && box_name != "Lucky Box")
 	{
 		mythic_pity = 0;
 		legendary_pity = 0;

@@ -48,7 +48,9 @@ void Inventory::sellItem(Upgrades& upgrade)
 
     std::cout << "\nSell all Basics (-2)\n";
     std::cout << "Sell all Commons (-3)\n";
-    std::cout << "Enter the idexes of the items you want to sell with a space separating each one (-1 to finish): ";
+    std::cout << "Sell all Rares (-4)\n";
+    std::cout << "Sell all items (-5)\n";
+    std::cout << "Enter the indexes of the items you want to sell with a space separating each one (-1 to finish): ";
 
     while (std::cin >> choice && choice != -1)
     {
@@ -82,8 +84,46 @@ void Inventory::sellItem(Upgrades& upgrade)
             coins += floor(total * upgrade.getSellBonus());
             return;
         }
+        if (choice == -4)
+        {
+            double total = 0;
 
-        if (choice > items.size())
+            std::erase_if(items, [&total](Item item)
+            {
+                bool isRare = item.rarity == Rarity::Rare;
+                if (isRare) total += item.value;
+                return isRare;
+            });
+
+            std::cout << "\nSold all Rares for " << total * upgrade.getSellBonus() << " coins\n";
+            coins += floor(total * upgrade.getSellBonus());
+            return;
+        }
+        if (choice == -5)
+        {
+            double total = 0;
+
+            std::cout << '\n';
+
+            while (!items.empty())
+            {
+                size_t i = items.size() - 1;
+                Item& item = items[i];
+
+
+                std::cout << "Sold: " << RarityUtils::getColor(items[i].rarity) << items[i].name << "\033[0m\n";
+
+                total += item.value;
+                items.erase(items.begin() + i);
+            }
+
+            std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
+
+            coins += floor(total * upgrade.getSellBonus());
+            return;
+        }
+
+        if (choice > items.size() )
         {
             std::cout << "Item doesn't exist!\n";
         }
@@ -102,7 +142,7 @@ void Inventory::sellItem(Upgrades& upgrade)
 
     std::sort(indices.rbegin(), indices.rend());
 
-    int total = 0;
+    double total = 0;
 
     std::cout << '\n';
 

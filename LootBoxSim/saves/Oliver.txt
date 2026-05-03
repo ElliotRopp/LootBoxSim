@@ -1,0 +1,12 @@
+COINS:818
+BOX:3
+PITY:0,37,37
+COLLECTION:192,73,107,101,49,7,1
+UPGRADES:10,7,10,2
+INVENTORY:
+Rare,Stonebreaker Flail,48
+Epic,Ancient Relic Map,140
+Rare,Phantom Throwing Knives,45
+Rare,Arcblade Prototype,46
+Rare,Reinforced Rope Coil,32
+Epic,Graviton Boots,170

@@ -48,6 +48,9 @@
 
 	* balancing - upgrades, costs, chances, etc.
 	* better UI's
+	* sell all
+	* combine sell and inventory
+	* make it so youdont go back to main menu after sell and upgrade
 
 /*****************************************/
 
