@@ -96,11 +96,10 @@ void showMainMenu(const Inventory& inv, const Upgrades& upgrades, const LootBox&
 
 	std::cout << "  1. Open "<< shop.boxes[shop.current_box].name << "\n";
 	std::cout << "  2. Shop\n";
-	std::cout << "  3. Inventory\n";
-	std::cout << "  4. Sell\n";
-	std::cout << "  5. Collection\n";
-	std::cout << "  6. Upgrades\n";
-	std::cout << "  7. Save & Quit\n";
+	std::cout << "  3. Inventory/Sell\n";
+	std::cout << "  4. Collection\n";
+	std::cout << "  5. Upgrades\n";
+	std::cout << "  6. Save & Quit\n";
 
 	std::cout << "---------------------------------\n";
 
@@ -231,23 +230,17 @@ int main()
 		else if (input == "3")
 		{
 			inv.showInventory();
+			inv.sellItem(upgrades);
 			clearInputBuffer();
 			waitForEnter();
 		}
 		else if (input == "4")
 		{
-			inv.showInventory();
-			inv.sellItem(upgrades);
-			clearInputBuffer();
-			waitForEnter();
-		}
-		else if (input == "5")
-		{
 			collection.show();
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "6")
+		else if (input == "5")
 		{
 			upgrades.show(inv.coins);
 
@@ -274,7 +267,7 @@ int main()
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "7")
+		else if (input == "6")
 		{
 			save.saveGame(inv, collection, box, upgrades, shop);
 
