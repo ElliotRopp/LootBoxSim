@@ -32,15 +32,15 @@ int DropTable::getChance(Rarity rarity)
 }
 
 
-Rarity DropTable::roll(int luck_bonus)
+Rarity DropTable::roll(int luck_bonus, const std::string& box_name)
 {
-	auto adjusted = getAdjustedWeight(luck_bonus);
+	auto adjusted = getAdjustedWeight(luck_bonus, box_name);
 
 	int total_weight = 0;
 	for (int w : adjusted)
 		total_weight += w;
 
-	if (total_weight == 0)
+	if (total_weight <= 0)
 		return Rarity::Common;
 
 	int roll = rand() % total_weight;
@@ -54,61 +54,11 @@ Rarity DropTable::roll(int luck_bonus)
 	}
 
 	return Rarity::Common;
-	
-	//int total_weight = 0;
-
-	//std::vector<int> adjusted_weights;
-
-	//for (auto& entry : table)
-	//{
-	//	int weight = entry.weight;
-
-	//	if (entry.rarity == Rarity::Rare)
-	//	{
-	//		weight += luck_bonus;
-	//	}
-	//	if (entry.rarity == Rarity::Epic)
-	//	{
-	//		weight += luck_bonus * 2;
-	//	}
-
-	//	if (entry.rarity == Rarity::Legendary)
-	//	{
-	//		weight += luck_bonus * 3;
-	//	}
-
-	//	if (entry.rarity == Rarity::Mythic)
-	//	{
-	//		weight += luck_bonus * 4;
-	//	}
-	//	adjusted_weights.push_back(weight);
-	//	total_weight += weight;
-	//}
-
-	//if (total_weight == 0)
-	//{
-	//	return Rarity::Common;
-	//}
-
-	//int roll = rand() % total_weight;
-
-	//for (int i = 0; i < table.size(); i++)
-	//{
-	//	if (roll < adjusted_weights[i])
-	//	{
-	//		return table[i].rarity;
-	//	}
-
-	//	roll -= adjusted_weights[i];
-	//}
-
-	//return Rarity::Common;
 }
 
 
-std::vector<int> DropTable::getAdjustedWeight(int luck)
+std::vector<int> DropTable::getAdjustedWeight(int luck, const std::string& box_name)
 {
-
 	std::vector<int> adjusted;
 
 	for (auto& entry : table)
@@ -116,7 +66,17 @@ std::vector<int> DropTable::getAdjustedWeight(int luck)
 		adjusted.push_back(entry.weight);
 	}
 
-	int steal = luck * 2;
+	int steal = luck; 
+	int give = std::min(luck * 2, 10);  
+
+	bool earlyBox =
+		box_name == "Free Box" ||
+		box_name == "Basic Box";
+
+	int epicBoost = earlyBox ? give / 3 : give / 2;
+	int legendaryBoost = earlyBox ? give / 5 : give / 3;
+	int mythicBoost = earlyBox ? give / 10 : give / 4;
+	int celestialBoost = earlyBox ? 0 : give / 6;
 
 	for (size_t i = 0; i < table.size() && steal > 0; i++)
 	{
@@ -129,62 +89,90 @@ std::vector<int> DropTable::getAdjustedWeight(int luck)
 		}
 	}
 
-	int give = luck * 2;
-
-	for (size_t i = 0; i < table.size() && give > 0; i++)
+	for (size_t i = 0; i < table.size(); i++)
 	{
-		if (table[i].rarity == Rarity::Rare)
+		switch (table[i].rarity)
 		{
-			adjusted[i] += give / 4;
-		}
-		else if (table[i].rarity == Rarity::Epic)
-		{
-			adjusted[i] += give / 4;
-		}
-		else if (table[i].rarity == Rarity::Legendary)
-		{
-			adjusted[i] += give / 4;
-		}
-		else if (table[i].rarity == Rarity::Mythic)
-		{
-			adjusted[i] += give / 4;
+		case Rarity::Rare:
+			adjusted[i] += give;
+			break;
+
+		case Rarity::Epic:
+			adjusted[i] += epicBoost;
+			break;
+
+		case Rarity::Legendary:
+			adjusted[i] += legendaryBoost;
+			break;
+
+		case Rarity::Mythic:
+			adjusted[i] += mythicBoost;
+			break;
+
+		case Rarity::Celestial:
+			adjusted[i] += celestialBoost;
+			break;
+
+		default:
+			break;
 		}
 	}
 
 	return adjusted;
 
+	//std::vector<int> adjusted;
+
 	//for (auto& entry : table)
 	//{
-	//	if (entry.rarity == rarity)
+	//	adjusted.push_back(entry.weight);
+	//}
+
+	//int steal = luck * 2;
+
+	//for (size_t i = 0; i < table.size() && steal > 0; i++)
+	//{
+	//	if (table[i].rarity == Rarity::Basic ||
+	//		table[i].rarity == Rarity::Common)
 	//	{
-	//		int weight = entry.weight;
-
-	//		if (weight == 0)
-	//			return 0;
-
-	//		if (rarity == Rarity::Rare)
-	//			weight += luck;
-
-	//		if (rarity == Rarity::Epic)
-	//			weight += luck * 2;
-
-	//		if (rarity == Rarity::Legendary)
-	//			weight += luck * 3;
-
-	//		if (rarity == Rarity::Mythic)
-	//			weight += luck * 4;
-
-	//		return weight;
+	//		int take = std::min(adjusted[i], steal);
+	//		adjusted[i] -= take;
+	//		steal -= take;
 	//	}
 	//}
 
-	//return 0;
+	//int give = luck * 2;
+
+	//for (size_t i = 0; i < table.size() && give > 0; i++)
+	//{
+	//	if (table[i].rarity == Rarity::Rare)
+	//	{
+	//		adjusted[i] += give / 4;
+	//	}
+	//	else if (table[i].rarity == Rarity::Epic)
+	//	{
+	//		adjusted[i] += give / 4;
+	//	}
+	//	else if (table[i].rarity == Rarity::Legendary)
+	//	{
+	//		adjusted[i] += give / 4;
+	//	}
+	//	else if (table[i].rarity == Rarity::Mythic)
+	//	{
+	//		adjusted[i] += give / 4;
+	//	}
+	//	else if (table[i].rarity == Rarity::Celestial)
+	//	{
+	//		adjusted[i] += give / 4;
+	//	}
+	//}
+
+	//return adjusted;
 }
 
 
-int DropTable::getAdjustedChance(Rarity rarity, int luck)
+int DropTable::getAdjustedChance(Rarity rarity, int luck, const std::string& box_name)
 {
-	auto adjusted = getAdjustedWeight(luck);
+	auto adjusted = getAdjustedWeight(luck, box_name);
 
 	int total = 0;
 	int target = 0;
@@ -201,4 +189,15 @@ int DropTable::getAdjustedChance(Rarity rarity, int luck)
 		return 0;
 
 	return (target * 100) / total;
+}
+
+
+bool DropTable::supports(Rarity r)
+{
+	for (auto& entry : table)
+	{
+		if (entry.rarity == r)
+			return entry.weight > 0;
+	}
+	return false;
 }

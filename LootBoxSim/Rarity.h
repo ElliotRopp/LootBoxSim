@@ -11,5 +11,6 @@ enum class Rarity
 	Rare,
 	Epic,
 	Legendary,
-	Mythic
+	Mythic,
+	Celestial
 };

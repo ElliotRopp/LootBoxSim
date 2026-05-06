@@ -16,4 +16,5 @@ struct BoxType
 	int epic_chance;
 	int legendary_chance;
 	int mythic_chance;
+	int celestial_chance;
 };

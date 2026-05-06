@@ -11,6 +11,7 @@ std::string RarityUtils::getColor(Rarity r)
         case Rarity::Epic:      return "\033[35m";
         case Rarity::Legendary: return "\033[33m";
         case Rarity::Mythic:    return "\033[91m";
+        case Rarity::Celestial: return "\033[38;5;37m";
     }
 
     return "\033[0m";
@@ -27,6 +28,7 @@ std::string RarityUtils::getName(Rarity r)
         case Rarity::Epic:      return "Epic";
         case Rarity::Legendary: return "Legendary";
         case Rarity::Mythic:    return "Mythic";
+        case Rarity::Celestial: return "Celestial";
     }
 
     return "Unknown";
@@ -41,6 +43,7 @@ Rarity RarityUtils::StringToRarity(std::string rarity_str)
     else if (rarity_str == "Epic")   return Rarity::Epic;
     else if (rarity_str == "Legendary") return Rarity::Legendary;
     else if (rarity_str == "Mythic") return Rarity::Mythic;
+    else if (rarity_str == "Celestial") return Rarity::Celestial;
 
     return Rarity::Common;
 }

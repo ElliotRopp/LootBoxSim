@@ -37,8 +37,6 @@ void Inventory::showInventory()
 
 void Inventory::sellItem(Upgrades& upgrade)
 {
-
-    
     while (true)
     {
         if (items.empty())
@@ -78,7 +76,7 @@ void Inventory::sellItem(Upgrades& upgrade)
 
                 std::cout << "Sold all Basics for " << total * upgrade.getSellBonus() << " coins\n";
                 coins += floor(total * upgrade.getSellBonus());
-                return;
+                //return;
             }
             if (choice == -3)
             {
@@ -93,7 +91,7 @@ void Inventory::sellItem(Upgrades& upgrade)
 
                 std::cout << "\nSold all Commons for " << total * upgrade.getSellBonus() << " coins\n";
                 coins += floor(total * upgrade.getSellBonus());
-                return;
+                //return;
             }
             if (choice == -4)
             {
@@ -108,7 +106,7 @@ void Inventory::sellItem(Upgrades& upgrade)
 
                 std::cout << "\nSold all Rares for " << total * upgrade.getSellBonus() << " coins\n";
                 coins += floor(total * upgrade.getSellBonus());
-                return;
+                //return;
             }
             if (choice == -5)
             {
@@ -131,7 +129,7 @@ void Inventory::sellItem(Upgrades& upgrade)
                 std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
 
                 coins += floor(total * upgrade.getSellBonus());
-                return;
+                //return;
             }
 
             if (choice > items.size())

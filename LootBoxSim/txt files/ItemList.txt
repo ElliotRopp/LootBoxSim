@@ -192,3 +192,19 @@ Mythic,Compass of Lost Universes,3500
 Mythic,Key to the Final Gate,4600
 Mythic,Relic of the Forgotten Gods,4200
 Mythic,Fragment of Creation,5000
+Celestial,Starfall Eternity Blade,15000
+Celestial,Celestial Nova Greatsword,18500
+Celestial,Galaxy Piercer Spear,17000
+Celestial,Supernova Warhammer,21000
+Celestial,Orb of Infinite Stars,20000
+Celestial,Crown of the Cosmos,24000
+Celestial,Armor of the Astral Titans,22000
+Celestial,Nebula Phantom Cloak,16500
+Celestial,Starlight Chrono Compass,15500
+Celestial,Key of the Celestial Gate,23000
+Celestial,Gauntlets of the Cosmic Forge,14500
+Celestial,Compass of Endless Galaxies,12800
+Celestial,Orb of Stellar Dominion,17500
+Celestial,Relic of the Celestial Titans,18200
+Celestial,Key of the Astral Gate,16800
+Celestial,Fragment of a Dying Star,15000

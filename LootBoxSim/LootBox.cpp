@@ -58,6 +58,10 @@ void LootBox::readFile()
 		{
 			mythic.push_back(Item(name, r, value));
 		}
+		if (r == Rarity::Celestial)
+		{
+			celestial.push_back(Item(name, r, value));
+		}
 	}
 
 	if (file.is_open())
@@ -66,7 +70,9 @@ void LootBox::readFile()
 			<< common.size() << " commons, "
 			<< rare.size() << " rares, "
 			<< epic.size() << " epics, "
-			<< legendary.size() << " legendaries\n";
+			<< legendary.size() << " legendaries, "
+			<< mythic.size() << " mythics, "
+			<< celestial.size() << "celestials\n";
 	}
 
 	file.close();
@@ -78,6 +84,16 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 	Item item;
 	bool pity_triggered = false;
 
+	if (celestial_pity >= 250 && table.supports(Rarity::Celestial))
+	{
+		mythic_pity = 0;
+		legendary_pity = 0;
+		epic_pity = 0;
+		celestial_pity = 0;
+
+		item = celestial[rand() % celestial.size()];
+		pity_triggered = true;
+	}
 	if (mythic_pity >= 100 && box_name != "Free Box" && box_name != "Basic Box" && box_name != "Gold Box" && box_name != "Lucky Box")
 	{
 		mythic_pity = 0;
@@ -95,23 +111,30 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 		item = legendary[rand() % legendary.size()];
 		pity_triggered = true;
 	}
-	if (epic_pity >= 15 && box_name != "Free Box")
+	if (epic_pity >= 15 && table.supports(Rarity::Epic))
 	{
 		epic_pity = 0;
 
 		item = epic[rand() % epic.size()];
 		pity_triggered = true;
 	}
+	if (celestial_pity >= 250)
+	{
+		celestial_pity = 0;
+		//mythic_pity = 0;
+		//legendary_pity = 0;
+		//epic_pity = 0;
+	}
 	if (mythic_pity >= 100)
 	{
 		mythic_pity = 0;
-		legendary_pity = 0;
-		epic_pity = 0;
+		//legendary_pity = 0;
+		//epic_pity = 0;
 	}
 	if (legendary_pity >= 40)
 	{
 		legendary_pity = 0;
-		epic_pity = 0;
+		//epic_pity = 0;
 	}
 	if (epic_pity >= 15)
 	{
@@ -121,7 +144,7 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 
 	if (!pity_triggered)
 	{
-		Rarity r = table.roll(upgrades.luck_level);
+		Rarity r = table.roll(upgrades.luck_level, box_name);
 
 		if (r == Rarity::Basic)
 		{
@@ -147,11 +170,11 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 		{
 			item = mythic[rand() % mythic.size()];
 		}
+		else if (r == Rarity::Celestial)
+		{
+			item = celestial[rand() % celestial.size()];
+		}
 	}
-
-		epic_pity++;
-		legendary_pity++;
-		mythic_pity++;
 
 		if (item.rarity == Rarity::Epic)
 		{
@@ -165,11 +188,18 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 		{
 			mythic_pity = 0;
 		}
-
-		if (box_name != "Free Box")
+		if (item.rarity == Rarity::Celestial)
 		{
-			std::cout << "\nOpened " << box_name << '\n';
+			celestial_pity = 0;
 		}
+
+
+		epic_pity++;
+		legendary_pity++;
+		mythic_pity++;
+		celestial_pity++;
+
+		std::cout << "\nOpened " << box_name << '\n';
 
 
 		std::cout << "\nRolled: "
@@ -182,6 +212,7 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 		{
 			std::cout << " [NEW]\n";
 		}
+
 
 		return item;
 }

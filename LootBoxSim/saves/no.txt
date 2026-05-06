@@ -1,0 +1,98 @@
+COINS:59
+BOX:1
+PITY:0,24,64
+COLLECTION:122,65,56,32,11,0,0
+UPGRADES:0,0,0,0
+INVENTORY:
+Basic, Old Torch Handle,2
+Rare,Deepsea Compass,39
+Basic, Dull Iron Shard,2
+Common,Confused Chicken Feather,6
+Common,Ancient Spoon,8
+Common,Worn Rope Coil,7
+Rare,Swift Lockpick Set,35
+Common,Worn Map Fragment,7
+Rare,Arcblade Prototype,46
+Basic, Tattered Adventurer Cloak,3
+Rare,Frost-Touched Mace,48
+Common,Old Lantern (Low Oil),10
+Rare,Silent Step Hood,38
+Epic,Elixir of Greater Power,135
+Rare,Frostbite Crossbow,46
+Basic, Faded Map Fragment,2
+Epic,Starfall Throwing Knives,160
+Common,Rock That Might Be Important,7
+Common,Mysterious Rock,7
+Epic,Tempest Channeler Rod,175
+Rare,Windcaller Rapier,42
+Rare,Nightstalker Cloak,37
+Common,Half-Dull Whetstone,8
+Rare,Glacial Spear,46
+Epic,Stormbreaker Great Axe,190
+Common,Lucky Button,9
+Common,Old Spear,11
+Common,Simple Lockpick Set,11
+Basic, Rusty Key,2
+Common,Rough Iron Buckler,12
+Rare,Mystic Whetstone,33
+Common,Rubber Chicken,6
+Common,Tattered Backpack,9
+Basic, Broken Compass,2
+Rare,Traveler's Sigil Pack,36
+Epic,Ancient Skybreaker Staff,210
+Rare,Steel Recurve Bow,44
+Common,Weathered Longsword,14
+Rare,Runed Dagger,36
+Epic,Graviton Boots,170
+Common,Old Travel Cloak,9
+Common,Stale Bread,5
+Basic, Weathered Travel Boots,3
+Common,Rusty Dagger,9
+Common,Rough Iron Buckler,12
+Common,Cracked Throwing Knife,8
+Common,Old Lantern (Low Oil),10
+Basic, Empty Potion Bottle,1
+Basic, Cracked Wooden Sword,2
+Rare,Arcane Leather Armor,42
+Common,Ancient Spoon,8
+Common,Cracked Mace,11
+Basic, Broken Arrow Shaft,1
+Common,Dented Iron Helm,11
+Common,Old Boot,5
+Epic,Tempest Channeler Rod,175
+Common,Scratched Wooden Armor Plates,10
+Common,Stale Bread,5
+Common,Confused Chicken Feather,6
+Basic, Dull Iron Shard,2
+Basic, Tattered Adventurer Cloak,3
+Rare,Ancient Compass (True North),38
+Common,Leather Scrap Armor,10
+Rare,Blessed Iron Shield,38
+Rare,Phantom Step Boots,42
+Common,Frayed Archer Hood,7
+Epic,Stormcall Chakram,170
+Basic, Cracked Wooden Sword,2
+Rare,Phantom Step Boots,42
+Common,Torn Leather Boots,8
+Basic, Chipped Stone Axe,3
+Common,Frayed Guard Gloves,7
+Rare,Ice-Bound Bow,45
+Rare,Emberglow Shield,38
+Common,Cracked Throwing Knife,8
+Basic, Worn Leather Strap,1
+Epic,Spiritbound Guardian Shield,155
+Common,Dull Hunting Knife,8
+Common,Frayed Archer Hood,7
+Common,Lucky Button,9
+Rare,Gold-Plated Lucky Coin,37
+Rare,Mystic Whetstone,33
+Common,Stale Bread,5
+Basic, Faded Map Fragment,2
+Basic, Broken Compass,2
+Basic, Bent Copper Coin,2
+Rare,Thunder Hammer,50
+Epic,Elixir of Greater Power,135
+Rare,Ancient Compass (True North),38
+Rare,Thunder Hammer,50
+Basic, Torn Cloth Bandage,2
+Epic,Obsidian Rune Shield,175

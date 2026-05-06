@@ -133,34 +133,39 @@ void Shop::showShop(Inventory inv, int luck)
 	std::cout << "    ----------------------------------------------------\n\n";
 
 	std::cout << "        "
-		<< current.table.getAdjustedChance(Rarity::Basic, luck) << "% \033[90mBasic\033[0m"
+		<< current.table.getAdjustedChance(Rarity::Basic, luck, boxes[current_box].name) << "% \033[90mBasic\033[0m"
 		<< "                   "
-		<< next.table.getAdjustedChance(Rarity::Basic, luck) << "% \033[90mBasic\033[0m\n";
+		<< next.table.getAdjustedChance(Rarity::Basic, luck, boxes[current_box + 1].name) << "% \033[90mBasic\033[0m\n";
 
 	std::cout << "        "
-		<< current.table.getAdjustedChance(Rarity::Common, luck) << "% \033[32mCommon\033[0m"
+		<< current.table.getAdjustedChance(Rarity::Common, luck, boxes[current_box].name) << "% \033[32mCommon\033[0m"
 		<< "                 "
-		<< next.table.getAdjustedChance(Rarity::Common, luck) << "% \033[32mCommon\033[0m\n";
+		<< next.table.getAdjustedChance(Rarity::Common, luck, boxes[current_box + 1].name) << "% \033[32mCommon\033[0m\n";
 
 	std::cout << "        "
-		<< current.table.getAdjustedChance(Rarity::Rare, luck) << "% \033[34mRare\033[0m"
+		<< current.table.getAdjustedChance(Rarity::Rare, luck, boxes[current_box].name) << "% \033[34mRare\033[0m"
 		<< "                   "
-		<< next.table.getAdjustedChance(Rarity::Rare, luck) << "% \033[34mRare\033[0m\n";
+		<< next.table.getAdjustedChance(Rarity::Rare, luck, boxes[current_box + 1].name) << "% \033[34mRare\033[0m\n";
 
 	std::cout << "        "
-		<< current.table.getAdjustedChance(Rarity::Epic, luck) << "% \033[35mEpic\033[0m"
+		<< current.table.getAdjustedChance(Rarity::Epic, luck, boxes[current_box].name) << "% \033[35mEpic\033[0m"
 		<< "                    "
-		<< next.table.getAdjustedChance(Rarity::Epic, luck) << "% \033[35mEpic\033[0m\n";
+		<< next.table.getAdjustedChance(Rarity::Epic, luck, boxes[current_box + 1].name) << "% \033[35mEpic\033[0m\n";
 
 	std::cout << "        "
-		<< current.table.getAdjustedChance(Rarity::Legendary, luck) << "% \033[33mLegendary\033[0m"
+		<< current.table.getAdjustedChance(Rarity::Legendary, luck, boxes[current_box].name) << "% \033[33mLegendary\033[0m"
 		<< "               "
-		<< next.table.getAdjustedChance(Rarity::Legendary, luck) << "% \033[33mLegendary\033[0m\n";
+		<< next.table.getAdjustedChance(Rarity::Legendary, luck, boxes[current_box + 1].name) << "% \033[33mLegendary\033[0m\n";
 
 	std::cout << "        "
-		<< current.table.getAdjustedChance(Rarity::Mythic, luck) << "% \033[91mMythic\033[0m"
+		<< current.table.getAdjustedChance(Rarity::Mythic, luck, boxes[current_box].name) << "% \033[91mMythic\033[0m"
 		<< "                  "
-		<< next.table.getAdjustedChance(Rarity::Mythic, luck) << "% \033[91mMythic\033[0m\n";
+		<< next.table.getAdjustedChance(Rarity::Mythic, luck, boxes[current_box + 1].name) << "% \033[91mMythic\033[0m\n";
+
+	std::cout << "        "
+		<< current.table.getAdjustedChance(Rarity::Celestial, luck, boxes[current_box].name) << "% \033[38;5;37mCelestial\033[0m"
+		<< "               "
+		<< next.table.getAdjustedChance(Rarity::Celestial, luck, boxes[current_box + 1].name) << "% \033[38;5;37mCelestial\033[0m\n";
 
 	std::cout << "\n---------------------------------\n";
 	std::cout << "Enter choice: ";

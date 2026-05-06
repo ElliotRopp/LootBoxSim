@@ -50,7 +50,7 @@
 
 /***********    IN PROGRESS    ***********\
 
-	
+	* 
 
 /*****************************************/
 
@@ -91,6 +91,7 @@ void showMainMenu(const Inventory& inv, const Upgrades& upgrades, const LootBox&
 	std::cout << "  Epic:      " << box.epic_pity << " / 15\n";
 	std::cout << "  Legendary: " << box.legendary_pity << " / 40\n";
 	std::cout << "  Mythic:    " << box.mythic_pity << " / 100\n";
+	std::cout << "  Celestial: " << box.celestial_pity << " / 250\n";
 
 	std::cout << "\n---------------------------------\n";
 

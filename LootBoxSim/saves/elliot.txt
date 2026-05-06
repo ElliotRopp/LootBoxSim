@@ -1,9 +1,25 @@
 COINS:81
 BOX:1
-PITY:0,33,32
-COLLECTION:77,57,40,25,9,1,1
+PITY:0,49,48
+COLLECTION:93,61,46,30,10,1,1
 UPGRADES:4,0,1,1
 INVENTORY:
 Basic, Cracked Wooden Sword,2
 Common,Half Eaten Apple,5
 Epic,Voidglass Whetstone,155
+Common,Iron Cooking Pan,9
+Rare,Runed Dagger,36
+Rare,Ancient Compass (True North),38
+Basic, Rusted Nail Club,2
+Basic, Torn Cloth Bandage,2
+Basic, Old Torch Handle,2
+Common,Dull Hunting Knife,8
+Common,Worn Iron Sword,14
+Common,Rough Iron Buckler,12
+Common,Scratched Wooden Armor Plates,10
+Rare,Sealed Adventurer's Pack,35
+Common,Old Spear,11
+Basic, Tattered Adventurer Cloak,3
+Rare,Blessed Iron Shield,38
+Rare,Arcane Scout Armor,41
+Epic,Starfall Throwing Knives,160
