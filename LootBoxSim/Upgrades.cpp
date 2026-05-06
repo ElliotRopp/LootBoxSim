@@ -1,6 +1,7 @@
 #include "Upgrades.h"
 
 #include <iostream>
+#include <cmath>
 
 
 int Upgrades::getLuckBonus()
@@ -36,9 +37,9 @@ void Upgrades::show(double coins)
 
     std::cout << "Coins: " << coins << "\n\n";
 
-    int luckCost = 100 * (luck_level + 1);
-    int sellCost = 120 * (sell_level + 1);
-    int invCost = 150 * (inventory_level + 1);
+    int luckCost = 150 * pow(1.6, luck_level);
+    int sellCost = 200 * pow(1.6, sell_level);
+    int invCost = 250 * pow(1.6, inventory_level);
 
     int currentLuck = getLuckBonus();
     int nextLuck = (luck_level + 1) * 2;

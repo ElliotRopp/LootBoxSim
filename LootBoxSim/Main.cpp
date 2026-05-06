@@ -42,14 +42,15 @@
 	X combine sell and inventory
 	X fix the warnings
 	X better UI's
+	X stay in sell and upgrade screens
+	X increase upgrade costs
 
 /***************************************\
 
 
 /***********    IN PROGRESS    ***********\
 
-	* make it so you dont go back to main menu after sell and upgrade
-	* increase upgrade costs
+	
 
 /*****************************************/
 
