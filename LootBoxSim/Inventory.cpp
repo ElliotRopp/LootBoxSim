@@ -37,128 +37,142 @@ void Inventory::showInventory()
 
 void Inventory::sellItem(Upgrades& upgrade)
 {
-    if (items.empty())
+
+    
+    while (true)
     {
-        std::cout << "Invetory is empty!\n:";
-        return;
-    }
-
-    std::vector<int> indices;
-    int choice;
-
-    std::cout << "\nSell all Basics (-2)\n";
-    std::cout << "Sell all Commons (-3)\n";
-    std::cout << "Sell all Rares (-4)\n";
-    std::cout << "Sell all items (-5)\n";
-    std::cout << "Enter the indexes of the items you want to sell with a space separating each one (-1 to finish): ";
-
-    while (std::cin >> choice && choice != -1)
-    {
-        if (choice == -2)
+        if (items.empty())
         {
-            double total = 0;
-
-            std::erase_if(items, [&total](Item item)
-            {
-                bool isBasic = item.rarity == Rarity::Basic;
-                if (isBasic) total += item.value;
-                return isBasic;
-            });
-
-            std::cout << "Sold all Basics for " << total * upgrade.getSellBonus() << " coins\n";
-            coins += floor(total * upgrade.getSellBonus());
+            std::cout << "Invetory is empty!\n:";
             return;
         }
-        if (choice == -3)
+
+        std::vector<int> indices;
+        int choice;
+
+        showInventory();
+
+        std::cout << "\nSell all Basics (-2)\n";
+        std::cout << "Sell all Commons (-3)\n";
+        std::cout << "Sell all Rares (-4)\n";
+        std::cout << "Sell all items (-5)\n";
+        std::cout << "Back to menu (-6)\n";
+        std::cout << "Enter the indexes of the items you want to sell with a space separating each one (-1 to finish): ";
+
+        while (std::cin >> choice && choice != -1)
         {
-            double total = 0;
-
-            std::erase_if(items, [&total](Item item)
+            if (choice == -6)
             {
-                bool isCommon = item.rarity == Rarity::Common;
-                if (isCommon) total += item.value;
-                return isCommon;
-            });
-
-            std::cout << "\nSold all Commons for " << total * upgrade.getSellBonus() << " coins\n";
-            coins += floor(total * upgrade.getSellBonus());
-            return;
-        }
-        if (choice == -4)
-        {
-            double total = 0;
-
-            std::erase_if(items, [&total](Item item)
+                return;
+            }
+            if (choice == -2)
             {
-                bool isRare = item.rarity == Rarity::Rare;
-                if (isRare) total += item.value;
-                return isRare;
-            });
+                double total = 0;
 
-            std::cout << "\nSold all Rares for " << total * upgrade.getSellBonus() << " coins\n";
-            coins += floor(total * upgrade.getSellBonus());
-            return;
-        }
-        if (choice == -5)
-        {
-            double total = 0;
+                std::erase_if(items, [&total](Item item)
+                {
+                    bool isBasic = item.rarity == Rarity::Basic;
+                    if (isBasic) total += item.value;
+                    return isBasic;
+                });
 
-            std::cout << '\n';
-
-            while (!items.empty())
+                std::cout << "Sold all Basics for " << total * upgrade.getSellBonus() << " coins\n";
+                coins += floor(total * upgrade.getSellBonus());
+                return;
+            }
+            if (choice == -3)
             {
-                size_t i = items.size() - 1;
-                Item& item = items[i];
+                double total = 0;
+
+                std::erase_if(items, [&total](Item item)
+                {
+                    bool isCommon = item.rarity == Rarity::Common;
+                    if (isCommon) total += item.value;
+                    return isCommon;
+                });
+
+                std::cout << "\nSold all Commons for " << total * upgrade.getSellBonus() << " coins\n";
+                coins += floor(total * upgrade.getSellBonus());
+                return;
+            }
+            if (choice == -4)
+            {
+                double total = 0;
+
+                std::erase_if(items, [&total](Item item)
+                {
+                    bool isRare = item.rarity == Rarity::Rare;
+                    if (isRare) total += item.value;
+                    return isRare;
+                });
+
+                std::cout << "\nSold all Rares for " << total * upgrade.getSellBonus() << " coins\n";
+                coins += floor(total * upgrade.getSellBonus());
+                return;
+            }
+            if (choice == -5)
+            {
+                double total = 0;
+
+                std::cout << '\n';
+
+                while (!items.empty())
+                {
+                    size_t i = items.size() - 1;
+                    Item& item = items[i];
 
 
-                std::cout << "Sold: " << RarityUtils::getColor(items[i].rarity) << items[i].name << "\033[0m\n";
+                    std::cout << "Sold: " << RarityUtils::getColor(items[i].rarity) << items[i].name << "\033[0m\n";
 
-                total += item.value;
-                items.erase(items.begin() + i);
+                    total += item.value;
+                    items.erase(items.begin() + i);
+                }
+
+                std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
+
+                coins += floor(total * upgrade.getSellBonus());
+                return;
             }
 
-            std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
+            if (choice > items.size())
+            {
+                std::cout << "Item doesn't exist!\n";
+            }
+            else
+            {
+                indices.push_back(choice - 1);
+            }
+        }
 
-            coins += floor(total * upgrade.getSellBonus());
+
+        if (indices.empty())
+        {
+            std::cout << "No items selected.\n";
             return;
         }
 
-        if (choice > items.size() )
+        std::sort(indices.rbegin(), indices.rend());
+
+        double total = 0;
+
+        std::cout << '\n';
+
+        for (int i : indices)
         {
-            std::cout << "Item doesn't exist!\n";
+            if (i >= 0 && i < items.size())
+            {
+                std::cout << "Sold: " << RarityUtils::getColor(items[i].rarity) << items[i].name << "\033[0m\n";
+
+                total += items[i].value;
+                items.erase(items.begin() + i);
+            }
         }
-        else
-        {
-            indices.push_back(choice - 1);
-        }
+
+
+        std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
+
+        coins += floor(total * upgrade.getSellBonus());
     }
 
-
-    if (indices.empty())
-    {
-        std::cout << "No items selected.\n";
-        return;
-    }
-
-    std::sort(indices.rbegin(), indices.rend());
-
-    double total = 0;
-
-    std::cout << '\n';
-
-    for (int i : indices)
-    {
-        if (i >= 0 && i < items.size())
-        {
-            std::cout << "Sold: " << RarityUtils::getColor(items[i].rarity) << items[i].name << "\033[0m\n";
-
-            total += items[i].value;
-            items.erase(items.begin() + i);
-        }
-    }
-
-
-    std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
-
-    coins += floor(total * upgrade.getSellBonus());
+    
 }

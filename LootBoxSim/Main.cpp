@@ -18,9 +18,7 @@
 	* item collectables
 	* chace to roll mystery chest (mystery odds)
 	* auto sell
-	* fix the warnings
-	* click on buttons instead of typing?
-	* upgrade box instead of buying individually
+	* GUI
 	
 /***********************************/
 
@@ -39,18 +37,19 @@
 	X revamp save system
 	X save pity
 	X upgrades
-	X change shop to have upgrades/buy boxes
+	X upgrade box instead of buying individually
+	X sell all
+	X combine sell and inventory
+	X fix the warnings
+	X better UI's
 
 /***************************************\
 
 
 /***********    IN PROGRESS    ***********\
 
-	* balancing - upgrades, costs, chances, etc.
-	* better UI's
-	* sell all
-	* combine sell and inventory
-	* make it so youdont go back to main menu after sell and upgrade
+	* make it so you dont go back to main menu after sell and upgrade
+	* increase upgrade costs
 
 /*****************************************/
 
@@ -229,7 +228,6 @@ int main()
 		}
 		else if (input == "3")
 		{
-			inv.showInventory();
 			inv.sellItem(upgrades);
 			clearInputBuffer();
 			waitForEnter();
@@ -242,28 +240,36 @@ int main()
 		}
 		else if (input == "5")
 		{
-			upgrades.show(inv.coins);
+			while (true)
+			{
+				upgrades.show(inv.coins);
 
-			int choice;
-			std::cin >> choice;
+				int choice;
+				std::cin >> choice;
 
-			if (choice == 1)
-			{
-				upgrades.buyLuck(inv.coins);
+				if (choice == 1)
+				{
+					upgrades.buyLuck(inv.coins);
+				}
+				if (choice == 2)
+				{
+					upgrades.buySell(inv.coins);
+				}
+				if (choice == 3)
+				{
+					upgrades.buyInventory(inv.coins);
+					inv.limit = 100 + upgrades.getInventoryBonus();
+				}
+				if (choice == 4)
+				{
+					upgrades.buyMultiOpen(inv.coins);
+				}
+				if (choice == 5)
+				{
+					break;
+				}
 			}
-			if (choice == 2)
-			{
-				upgrades.buySell(inv.coins);
-			}
-			if (choice == 3)
-			{
-				upgrades.buyInventory(inv.coins);
-				inv.limit = 100 + upgrades.getInventoryBonus();
-			}
-			if (choice == 4)
-			{
-				upgrades.buyMultiOpen(inv.coins);
-			}
+			
 			clearInputBuffer();
 			waitForEnter();
 		}

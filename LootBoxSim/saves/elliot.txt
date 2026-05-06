@@ -1,10 +1,9 @@
-COINS:472
+COINS:81
 BOX:1
 PITY:0,33,32
 COLLECTION:77,57,40,25,9,1,1
-UPGRADES:3,0,1,1
+UPGRADES:4,0,1,1
 INVENTORY:
-Common,Suspicious Potion,8
 Basic, Cracked Wooden Sword,2
 Common,Half Eaten Apple,5
 Epic,Voidglass Whetstone,155
