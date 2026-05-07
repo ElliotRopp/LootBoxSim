@@ -91,7 +91,7 @@ void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& coll
 			std::string data = line.substr(11);
 			std::stringstream ss(data);
 
-			int u, b, c, r, e, l, m;
+			int u, b, c, r, e, l, m, cel;
 			char comma;
 
 			ss >> u >> comma
@@ -100,10 +100,11 @@ void SaveSystem::loadGame(std::string filename, Inventory& inv, Collection& coll
 				>> r >> comma
 				>> e >> comma
 				>> l >> comma
-				>> m;
+				>> m >> comma
+				>> cel;
 
 			collection.setUnique(u);
-			collection.setCounts(b, c, r, e, l, m);
+			collection.setCounts(b, c, r, e, l, m, cel);
 		}
 
 		else if (line.rfind("UPGRADES:", 0) == 0)
@@ -176,7 +177,8 @@ void SaveSystem::saveGame(Inventory& inv, Collection& collection, LootBox& box, 
 	file << "PITY:"
 		<< box.epic_pity << ","
 		<< box.legendary_pity << ","
-		<< box.mythic_pity << "\n";
+		<< box.mythic_pity << ","
+		<< box.celestial_pity << "\n";
 
 
 	file << "COLLECTION:"
@@ -186,7 +188,8 @@ void SaveSystem::saveGame(Inventory& inv, Collection& collection, LootBox& box, 
 		<< collection.getRareCount() << ","
 		<< collection.getEpicCount() << ","
 		<< collection.getLegendaryCount() << ","
-		<< collection.getMythicCount() << "\n";
+		<< collection.getMythicCount() << ","
+		<< collection.getCelestialCount() << "\n";
 
 	file << "UPGRADES:"
 		<< upgrades.luck_level << ","

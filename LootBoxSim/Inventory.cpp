@@ -23,7 +23,7 @@ void Inventory::showInventory()
 {
     std::cout << "\n=== INVENTORY ===\n";
 
-    for (int i = 0; i < items.size(); i++)
+    for (size_t i = 0; i < items.size(); i++)
     {
         std::cout << i + 1 << ": " << RarityUtils::getColor(items[i].rarity)
             << RarityUtils::getName(items[i].rarity) << ' '
@@ -45,7 +45,7 @@ void Inventory::sellItem(Upgrades& upgrade)
             return;
         }
 
-        std::vector<int> indices;
+        std::vector<uint64_t> indices;
         int choice;
 
         showInventory();
@@ -57,8 +57,12 @@ void Inventory::sellItem(Upgrades& upgrade)
         std::cout << "Back to menu (-6)\n";
         std::cout << "Enter the indexes of the items you want to sell with a space separating each one (-1 to finish): ";
 
-        while (std::cin >> choice && choice != -1)
+        while (std::cin >> choice)
         {
+            if (choice != -1)
+            {
+                break;
+            }
             if (choice == -6)
             {
                 return;
@@ -76,6 +80,7 @@ void Inventory::sellItem(Upgrades& upgrade)
 
                 std::cout << "Sold all Basics for " << total * upgrade.getSellBonus() << " coins\n";
                 coins += floor(total * upgrade.getSellBonus());
+
                 //return;
             }
             if (choice == -3)
@@ -114,17 +119,17 @@ void Inventory::sellItem(Upgrades& upgrade)
 
                 std::cout << '\n';
 
-                while (!items.empty())
+
+                //while (!items.empty())
+                for(auto& item : items)
                 {
-                    size_t i = items.size() - 1;
-                    Item& item = items[i];
-
-
-                    std::cout << "Sold: " << RarityUtils::getColor(items[i].rarity) << items[i].name << "\033[0m\n";
+                    
+                    std::cout << "Sold: " << RarityUtils::getColor(item.rarity) << item.name << "\033[0m\n";
 
                     total += item.value;
-                    items.erase(items.begin() + i);
                 }
+
+                items.clear();
 
                 std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
 
@@ -132,13 +137,13 @@ void Inventory::sellItem(Upgrades& upgrade)
                 //return;
             }
 
-            if (choice > items.size())
+            if (choice > static_cast<int>(items.size()))
             {
                 std::cout << "Item doesn't exist!\n";
             }
             else
             {
-                indices.push_back(choice - 1);
+                indices.push_back(static_cast<uint64_t>(choice - 1));
             }
         }
 
@@ -155,9 +160,9 @@ void Inventory::sellItem(Upgrades& upgrade)
 
         std::cout << '\n';
 
-        for (int i : indices)
+        for (auto i : indices)
         {
-            if (i >= 0 && i < items.size())
+            if (i < items.size())
             {
                 std::cout << "Sold: " << RarityUtils::getColor(items[i].rarity) << items[i].name << "\033[0m\n";
 
@@ -170,7 +175,5 @@ void Inventory::sellItem(Upgrades& upgrade)
         std::cout << "\n+" << total * upgrade.getSellBonus() << " coins\n";
 
         coins += floor(total * upgrade.getSellBonus());
-    }
-
-    
+    } 
 }

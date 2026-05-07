@@ -4,7 +4,6 @@
 #include "BoxType.h"
 #include "DropTable.h"
 #include "Collection.h"
-#include "Inventory.h"
 
 
 #pragma once
@@ -26,6 +25,6 @@ public:
 	int celestial_pity = 0;
 
 	LootBox();
-	Item open(DropTable& table, const std::string& box_name, Collection& collection, Inventory& inv, Upgrades& upgrades);
+	Item open(DropTable& table, const std::string& box_name, Collection& collection, Upgrades& upgrades);
 	void readFile();
 };

@@ -1,0 +1,11 @@
+COINS:0
+BOX:0
+PITY:5,5,5
+COLLECTION:5,3,2,0,0,0,0
+UPGRADES:0,0,0,0
+INVENTORY:
+Basic, Rusty Key,2
+Common,Confused Chicken Feather,6
+Basic, Bent Copper Coin,2
+Common,Half Eaten Apple,5
+Basic, Old Torch Handle,2

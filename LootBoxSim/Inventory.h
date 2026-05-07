@@ -12,7 +12,7 @@ public:
 	std::vector<Item> items;
 	double coins = 0;
 
-	int limit = 100;
+	uint64_t limit = 100;
 
 	void addItem(Item item);
 	void showInventory();

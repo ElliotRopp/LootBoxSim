@@ -37,9 +37,9 @@ void Upgrades::show(double coins)
 
     std::cout << "Coins: " << coins << "\n\n";
 
-    int luckCost = 150 * pow(1.6, luck_level);
-    int sellCost = 200 * pow(1.6, sell_level);
-    int invCost = 250 * pow(1.6, inventory_level);
+    int luckCost = static_cast<int>(150 * pow(1.6, luck_level));
+    int sellCost = static_cast<int>(200 * pow(1.6, sell_level));
+    int invCost = static_cast<int>(250 * pow(1.6, inventory_level));
 
     int currentLuck = getLuckBonus();
     int nextLuck = (luck_level + 1) * 2;

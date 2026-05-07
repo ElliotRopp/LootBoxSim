@@ -50,7 +50,8 @@
 
 /***********    IN PROGRESS    ***********\
 
-	* 
+	* fix inv/sell loop problem
+	* fix warnings
 
 /*****************************************/
 
@@ -198,7 +199,7 @@ int main()
 
 			for (int i = 0; i < opens; i++)
 			{
-				Item reward = box.open(boxtype.table, boxtype.name, collection, inv, upgrades);
+				Item reward = box.open(boxtype.table, boxtype.name, collection, upgrades);
 
 				collection.add(reward.name, reward.rarity);
 				inv.addItem(reward);

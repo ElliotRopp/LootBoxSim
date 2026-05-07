@@ -8,10 +8,10 @@ class Item
 {
 public:
 	std::string name;
-	Rarity rarity;
+	Rarity rarity = Rarity::Basic;
 	int value = -999999;
 
-	Item() {}
+	Item() {};
 	Item(std::string n, Rarity r, int v)
 	{
 		name = n;

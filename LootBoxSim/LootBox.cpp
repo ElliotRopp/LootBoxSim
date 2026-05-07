@@ -3,7 +3,6 @@
 #include "DropTable.h"
 #include "RarityUtils.h"
 #include "Collection.h"
-#include "Inventory.h"
 
 #include <fstream>
 #include <sstream>
@@ -79,7 +78,7 @@ void LootBox::readFile()
 }
 
 
-Item LootBox::open(DropTable& table, const std::string& box_name, Collection& collection, Inventory& inv, Upgrades& upgrades)
+Item LootBox::open(DropTable& table, const std::string& box_name, Collection& collection, Upgrades& upgrades)
 {
 	Item item;
 	bool pity_triggered = false;

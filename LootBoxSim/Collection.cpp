@@ -19,13 +19,14 @@ void Collection::add(const std::string& name, Rarity rarity)
 	case Rarity::Epic: epicCount++; break;
 	case Rarity::Legendary: legendaryCount++; break;
 	case Rarity::Mythic: mythicCount++; break;
+	case Rarity::Celestial: celestialCount++; break;
 	}
 }
 
 
 bool Collection::has(const std::string& name)
 {
-	return discovered.count(name);
+	return discovered.count(name) > 0;
 }
 
 
@@ -48,6 +49,7 @@ void Collection::show()
 	std::cout << "Epic Opened: " << epicCount << '\n';
 	std::cout << "Legendary Opened: " << legendaryCount << '\n';
 	std::cout << "Mythic Opened: " << mythicCount << '\n';
+	std::cout << "Celestial Opened: " << celestialCount << '\n';
 }
 
 
@@ -62,8 +64,9 @@ int Collection::getRareCount() { return rareCount; }
 int Collection::getEpicCount() { return epicCount; }
 int Collection::getLegendaryCount() { return legendaryCount; }
 int Collection::getMythicCount() { return mythicCount; }
+int Collection::getCelestialCount() { return celestialCount; }
 
-void Collection::setCounts(int b, int c, int r, int e, int l, int m)
+void Collection::setCounts(int b, int c, int r, int e, int l, int m, int cel)
 {
 	basicCount = b;
 	commonCount = c;
@@ -71,6 +74,7 @@ void Collection::setCounts(int b, int c, int r, int e, int l, int m)
 	epicCount = e;
 	legendaryCount = l;
 	mythicCount = m;
+	celestialCount = cel;
 }
 
 void Collection::setUnique(int u)

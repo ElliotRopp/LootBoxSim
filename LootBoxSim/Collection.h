@@ -3,7 +3,6 @@
 #include <set>
 #include <string>
 
-#include "Item.h"
 #include "Rarity.h"
 
 class Collection
@@ -18,6 +17,7 @@ private:
     int epicCount = 0;
     int legendaryCount = 0;
     int mythicCount = 0;
+    int celestialCount = 0;
 
 public:
     Collection() {};
@@ -35,7 +35,8 @@ public:
     int getEpicCount();
     int getLegendaryCount();
     int getMythicCount();
+    int getCelestialCount();
 
     void setUnique(int u);
-    void setCounts(int b, int c, int r, int e, int l, int m);
+    void setCounts(int b, int c, int r, int e, int l, int m, int cel);
 };
