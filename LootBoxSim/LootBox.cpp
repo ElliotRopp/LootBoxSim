@@ -71,7 +71,7 @@ void LootBox::readFile()
 			<< epic.size() << " epics, "
 			<< legendary.size() << " legendaries, "
 			<< mythic.size() << " mythics, "
-			<< celestial.size() << "celestials\n";
+			<< celestial.size() << " celestials\n";
 	}
 
 	file.close();

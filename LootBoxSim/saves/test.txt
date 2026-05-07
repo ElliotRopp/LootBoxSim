@@ -1,8 +1,0 @@
-COINS:294
-BOX:0
-PITY:7,37,37
-COLLECTION:32,17,15,5,0,0,0
-UPGRADES:0,0,0,0
-INVENTORY:
-Rare,Storm Axe,48
-Rare,Charm of Slight Fortune,41

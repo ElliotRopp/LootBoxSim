@@ -8,7 +8,7 @@
 struct BoxType
 {
 	std::string name;
-	int price;
+	int price = 0;
 	DropTable table;
 
 	int common_chance;

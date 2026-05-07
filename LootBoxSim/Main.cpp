@@ -261,7 +261,7 @@ int main()
 				if (choice == 3)
 				{
 					upgrades.buyInventory(inv.coins);
-					inv.limit = 100 + upgrades.getInventoryBonus();
+					inv.limit = static_cast<uint64_t>(100 + upgrades.getInventoryBonus());
 				}
 				if (choice == 4)
 				{

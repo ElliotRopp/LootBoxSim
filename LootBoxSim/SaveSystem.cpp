@@ -34,7 +34,7 @@ std::string SaveSystem::chooseSave(const std::vector<std::string>& saves)
 	std::cout << "           SAVE FILES\n";
 	std::cout << "=================================\n\n";
 
-	for (int i = 0; i < saves.size(); i++)
+	for (size_t i = 0; i < saves.size(); i++)
 	{
 		std::cout << i + 1 << ". " << saves[i] << std::endl;
 	}
