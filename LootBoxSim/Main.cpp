@@ -7,10 +7,8 @@
 
 /***********    IDEAS    ***********\
 
-	* progression/goal
 	* QOL changes
-	* make into an application?
-	* more rarities...(celestial(cyan), ancient(yellow tan?), etherial(silvery), etc.)
+	* more rarities...ancient(yellow tan?), etherial(silvery), etc.)
 	* open delay/animation
 	* sorted inventory
 	* item modifiers (Shiny, broken, etc.)
@@ -44,13 +42,13 @@
 	X better UI's
 	X stay in sell and upgrade screens
 	X increase upgrade costs
+	X progression
 
 /***************************************\
 
 
 /***********    IN PROGRESS    ***********\
 
-	* fix inv/sell loop problem
 	* fix warnings
 
 /*****************************************/
@@ -191,7 +189,7 @@ int main()
 
 		std::cout << '\n';
 
-		if (input == "1")
+		if (input == "1") //open box
 		{
 			BoxType& boxtype = shop.boxes[shop.current_box];
 
@@ -208,7 +206,7 @@ int main()
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "2")
+		else if (input == "2") //shop
 		{
 			shop.showShop(inv, upgrades.luck_level);
 
@@ -229,19 +227,19 @@ int main()
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "3")
+		else if (input == "3") //inventory and sell
 		{
 			inv.sellItem(upgrades);
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "4")
+		else if (input == "4") //collection
 		{
 			collection.show();
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "5")
+		else if (input == "5") //
 		{
 			while (true)
 			{
