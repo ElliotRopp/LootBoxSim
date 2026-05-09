@@ -2,19 +2,20 @@
 
 #include "Button.h"
 #include <SFML/Graphics.hpp>
-
+#include <memory>
 
 class LootBoxGUI
 {
 private:
     sf::RenderWindow window;
+    sf::Font m_font;
 
-    Button open_box_button;
-    Button shop_button;
-    Button inventory_button;
-    Button collection_button;
-    Button upgrades_button;
-    Button save_quit_button;
+    std::shared_ptr<Button> open_box_button;
+    std::shared_ptr<Button> shop_button;
+    std::shared_ptr<Button> inventory_button;
+    std::shared_ptr<Button> collection_button;
+    std::shared_ptr<Button> upgrades_button;
+    std::shared_ptr<Button> save_quit_button;
 
 public:
     LootBoxGUI();

@@ -61,6 +61,7 @@
 #include "SaveSystem.h"
 #include "Collection.h"
 #include "Upgrades.h"
+#include "LootBoxGUI.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -129,6 +130,12 @@ void clearInputBuffer()
 int main()
 {
 	srand(static_cast<unsigned int>(time(0)));
+
+	LootBoxGUI gui;
+
+	gui.run();
+
+	return 0;
 
 	Inventory inv;
 	LootBox box;

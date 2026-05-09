@@ -1,7 +1,10 @@
 #include "Button.h"
 
+#include <iostream>
 
-void Button::InitButton(const sf::Vector2f& size, const sf::Vector2f& position, const sf::Font& font, const std::string& label, sf::RenderWindow& window) : m_text(font), m_window(window)
+
+
+Button::Button(const sf::Vector2f& size, const sf::Vector2f& position, const sf::Font& font, const std::string& label, sf::RenderWindow& window) : m_text(font), m_window(window)
 {
     m_shape.setSize(size);
     m_shape.setPosition(position);

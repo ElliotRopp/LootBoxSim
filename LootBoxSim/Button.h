@@ -11,8 +11,7 @@ private:
     sf::RenderWindow& m_window;
 
 public:
-    Button() {};
-    void InitButton(const sf::Vector2f& size, const sf::Vector2f& position, const sf::Font& font, const std::string& label, sf::RenderWindow& window);
+    Button(const sf::Vector2f& size, const sf::Vector2f& position, const sf::Font& font, const std::string& label, sf::RenderWindow& window);
     bool isClicked(const sf::Event& event);
     void draw();
 };
