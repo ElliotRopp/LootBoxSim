@@ -1,12 +1,27 @@
 #pragma once
 
 #include "Button.h"
+#include "LootBox.h"
+#include "Shop.h"
+#include "Upgrades.h"
+#include "Collection.h"
+#include "SaveSystem.h"
+
 #include <SFML/Graphics.hpp>
 #include <memory>
 
 class LootBoxGUI
 {
 private:
+
+    Inventory inv;
+    LootBox box;
+    Shop shop;
+    SaveSystem save;
+    Collection collection;
+    Upgrades upgrades;
+
+
     sf::RenderWindow window;
     sf::Font m_font;
 

@@ -78,27 +78,6 @@ void Shop::loadBoxes()
 
 void Shop::showShop(Inventory inv, int luck)
 {
-	//std::cout << "\n===== SHOP =====\n";
-
-	//std::cout << "Coins: " << inv.coins << '\n';
-	//std::cout <<  '\n';
-
-	//for (int i = 1; i < boxes.size(); i++)
-	//{
-	//	std::cout << '\n' << i << ": "
-	//		<< boxes[i].name
-	//		<< "      (" << boxes[i].price << " coins)\n";
-
-	//	std::cout << "   "
-	//		<< boxes[i].table.getAdjustedChance(Rarity::Basic, luck) << "% \033[90mBasic\033[0m | "
-	//		<< boxes[i].table.getAdjustedChance(Rarity::Common, luck) << "% \033[32mCommon\033[0m | "
-	//		<< boxes[i].table.getAdjustedChance(Rarity::Rare, luck) << "% \033[34mRare\033[0m | "
-	//		<< boxes[i].table.getAdjustedChance(Rarity::Epic, luck) << "% \033[35mEpic\033[0m | "
-	//		<< boxes[i].table.getAdjustedChance(Rarity::Legendary, luck) << "% \033[33mLegendary\033[0m | "
-	//		<< boxes[i].table.getAdjustedChance(Rarity::Mythic, luck) << "% \033[91mMythic\033[0m\n";
-	//}
-	//std::cout << '\n' << boxes.size() << ". Back to menu\n";
-
 	std::cout << "\n=================================\n";
 	std::cout << "               SHOP\n";
 	std::cout << "=================================\n\n";

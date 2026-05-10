@@ -246,7 +246,7 @@ int main()
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "5") //
+		else if (input == "5") //upgrades
 		{
 			while (true)
 			{
@@ -281,7 +281,7 @@ int main()
 			clearInputBuffer();
 			waitForEnter();
 		}
-		else if (input == "6")
+		else if (input == "6") //save and quit
 		{
 			save.saveGame(inv, collection, box, upgrades, shop);
 
