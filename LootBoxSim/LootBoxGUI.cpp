@@ -14,14 +14,48 @@ LootBoxGUI::LootBoxGUI() :
         std::cout << "Failed to load font\n";
     }
 
+    new_game_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "New Game", window);
+    continue_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Continue", window);
+
     open_box_button = std::make_shared<Button> (sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "Open Box", window);
     shop_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Shop", window);
     inventory_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 190), m_font, "Inventory", window);
     collection_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 280), m_font, "Collection", window);
     upgrades_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 370), m_font, "Upgrades", window);
-    save_quit_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 460), m_font, "Save and Quit", window);
+    save_quit_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 460), m_font, "Save/Quit", window);
 }
 
+
+
+void LootBoxGUI::newGameLogic()
+{
+    inv.items.clear();
+    inv.coins = 0;
+
+    save.current_save = "";
+}
+
+void LootBoxGUI::continueLogic()
+{
+    std::vector<std::string> save_files = save.getSaveFiles();
+
+    if (save_files.empty())
+    {
+        std::cout << "No saves found.\n";
+        inv.items.clear();
+        inv.coins = 0;
+        save.current_save = "";
+    }
+    else
+    {
+        std::string file = save.chooseSave(save_files);
+        save.loadGame(file, inv, collection, box, upgrades, shop);
+
+        std::cout << "\nLoading data...\n";
+
+        save.current_save = file;
+    }
+}
 
 
 void LootBoxGUI::openBoxLogic()
@@ -42,7 +76,7 @@ void LootBoxGUI::openBoxLogic()
     }
 }
 
-void LootBoxGUI::shopLogic()
+void LootBoxGUI::shopLogic() 
 {
     std::cout << "\nOPENED SHOP\n";
 
@@ -119,16 +153,27 @@ void LootBoxGUI::saveQuitLogic()
 
 void LootBoxGUI::run()
 {
+    bool game_started = false;
+
+
     while (window.isOpen())
     {
         window.clear();
 
-        open_box_button->draw();
-        shop_button->draw();
-        inventory_button->draw();
-        collection_button->draw();
-        upgrades_button->draw();
-        save_quit_button->draw();
+        if (!game_started)
+        {
+            new_game_button->draw();
+            continue_button->draw();
+        }
+        else
+        {
+            open_box_button->draw();
+            shop_button->draw();
+            inventory_button->draw();
+            collection_button->draw();
+            upgrades_button->draw();
+            save_quit_button->draw();
+        }
 
         window.display();
 
@@ -138,36 +183,48 @@ void LootBoxGUI::run()
         {
             window.close();
         }
-
         else
         {
-            if (open_box_button->isClicked(event.value()))
+            if (!game_started)
             {
-                openBoxLogic();
+                if (new_game_button->isClicked(event.value()))
+                {
+                    newGameLogic();
+                    game_started = true;
+                }
+                else if (continue_button->isClicked(event.value()))
+                {
+                    continueLogic();
+                    game_started = true;
+                }
             }
-            else if (shop_button->isClicked(event.value()))
+            else
             {
-                shopLogic();
-            }
-            else if (inventory_button->isClicked(event.value()))
-            {
-                inventoryLogic();
-            }
-            else if (collection_button->isClicked(event.value()))
-            {
-                collectionLogic();
-            }
-            else if (upgrades_button->isClicked(event.value()))
-            {
-                upgradesLogic();
-            }
-            else if (save_quit_button->isClicked(event.value()))
-            {
-                saveQuitLogic();
+                if (open_box_button->isClicked(event.value()))
+                {
+                    openBoxLogic();
+                }
+                else if (shop_button->isClicked(event.value()))
+                {
+                    shopLogic();
+                }
+                else if (inventory_button->isClicked(event.value()))
+                {
+                    inventoryLogic();
+                }
+                else if (collection_button->isClicked(event.value()))
+                {
+                    collectionLogic();
+                }
+                else if (upgrades_button->isClicked(event.value()))
+                {
+                    upgradesLogic();
+                }
+                else if (save_quit_button->isClicked(event.value()))
+                {
+                    saveQuitLogic();
+                }
             }
         }
-
     }
-
-
 }

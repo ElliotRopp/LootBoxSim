@@ -17,6 +17,9 @@
 	* chace to roll mystery chest (mystery odds)
 	* auto sell
 	* GUI
+	* open delay
+	* increase all upgrade prices
+	* 
 	
 /***********************************/
 

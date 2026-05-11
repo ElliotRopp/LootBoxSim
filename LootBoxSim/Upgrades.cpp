@@ -98,9 +98,9 @@ void Upgrades::show(double coins)
     {
         int cost;
 
-        if (multi_open_level == 0) cost = 3000;
-        else if (multi_open_level == 1) cost = 7500;
-        else cost = 20000;
+        if (multi_open_level == 0) cost = 15000;
+        else if (multi_open_level == 1) cost = 50000;
+        else cost = 100000;
 
         std::cout << "   Cost: " << cost << " coins\n";
     }
@@ -192,9 +192,9 @@ void Upgrades::buyMultiOpen(double& coins)
 
     int cost;
 
-    if (multi_open_level == 0) cost = 3000;
-    else if (multi_open_level == 1) cost = 7500;
-    else cost = 20000;
+    if (multi_open_level == 0) cost = 15000;
+    else if (multi_open_level == 1) cost = 50000;
+    else cost = 100000;
 
     if (coins >= cost)
     {

@@ -151,6 +151,7 @@
     <ClInclude Include="Rarity.h" />
     <ClInclude Include="RarityUtils.h" />
     <ClInclude Include="SaveSystem.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Upgrades.h" />
   </ItemGroup>

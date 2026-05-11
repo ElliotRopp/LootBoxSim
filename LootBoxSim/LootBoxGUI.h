@@ -25,6 +25,9 @@ private:
     sf::RenderWindow window;
     sf::Font m_font;
 
+    std::shared_ptr<Button> new_game_button;
+    std::shared_ptr<Button> continue_button;
+
     std::shared_ptr<Button> open_box_button;
     std::shared_ptr<Button> shop_button;
     std::shared_ptr<Button> inventory_button;
@@ -36,6 +39,9 @@ public:
     LootBoxGUI();
 
     void run();
+
+    void newGameLogic();
+    void continueLogic();
 
     void openBoxLogic();
     void shopLogic();
