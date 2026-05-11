@@ -153,19 +153,19 @@ void LootBoxGUI::saveQuitLogic()
 
 void LootBoxGUI::run()
 {
-    bool game_started = false;
+    Screen state = Screen::InitialScreen;
 
 
     while (window.isOpen())
     {
         window.clear();
 
-        if (!game_started)
+        if (state == Screen::InitialScreen)
         {
             new_game_button->draw();
             continue_button->draw();
         }
-        else
+        else if (state == Screen::MainMenuScreen)
         {
             open_box_button->draw();
             shop_button->draw();
@@ -185,20 +185,20 @@ void LootBoxGUI::run()
         }
         else
         {
-            if (!game_started)
+            if (state == Screen::InitialScreen)
             {
                 if (new_game_button->isClicked(event.value()))
                 {
                     newGameLogic();
-                    game_started = true;
+                    state = Screen::MainMenuScreen;
                 }
                 else if (continue_button->isClicked(event.value()))
                 {
                     continueLogic();
-                    game_started = true;
+                    state = Screen::MainMenuScreen;
                 }
             }
-            else
+            else if (state == Screen::MainMenuScreen)
             {
                 if (open_box_button->isClicked(event.value()))
                 {

@@ -6,6 +6,7 @@
 #include "Upgrades.h"
 #include "Collection.h"
 #include "SaveSystem.h"
+#include "Screen.h"
 
 #include <SFML/Graphics.hpp>
 #include <memory>
