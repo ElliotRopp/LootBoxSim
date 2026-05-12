@@ -23,11 +23,14 @@ private:
     Upgrades upgrades;
 
 
+    Screen state;
+
     sf::RenderWindow window;
     sf::Font m_font;
 
     std::shared_ptr<Button> new_game_button;
     std::shared_ptr<Button> continue_button;
+    std::shared_ptr<Button> select_save_button; // need to make this screen still
 
     std::shared_ptr<Button> open_box_button;
     std::shared_ptr<Button> shop_button;
@@ -35,6 +38,12 @@ private:
     std::shared_ptr<Button> collection_button;
     std::shared_ptr<Button> upgrades_button;
     std::shared_ptr<Button> save_quit_button;
+
+    std::shared_ptr<Button> open_button;
+    std::shared_ptr<Button> buy_box_button;
+
+
+    std::shared_ptr<Button> back_button;
 
 public:
     LootBoxGUI();

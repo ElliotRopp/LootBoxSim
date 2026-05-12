@@ -19,7 +19,7 @@
 	* GUI
 	* open delay
 	* increase all upgrade prices
-	* 
+	* auto roll
 	
 /***********************************/
 

@@ -148,7 +148,6 @@ void Shop::showShop(Inventory inv, int luck)
 
 	std::cout << "\n---------------------------------\n";
 	std::cout << "Enter choice: ";
-
 }
 
 

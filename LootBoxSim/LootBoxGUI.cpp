@@ -8,6 +8,8 @@
 LootBoxGUI::LootBoxGUI() : 
     window(sf::VideoMode({ 800,600 }), "LootBox Sim")
 {
+
+    state = Screen::InitialScreen;
     
     if (!m_font.openFromFile("C:\\Windows\\Fonts\\arial.ttf"))
     {
@@ -17,12 +19,19 @@ LootBoxGUI::LootBoxGUI() :
     new_game_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "New Game", window);
     continue_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Continue", window);
 
+
     open_box_button = std::make_shared<Button> (sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "Open Box", window);
     shop_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Shop", window);
     inventory_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 190), m_font, "Inventory", window);
     collection_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 280), m_font, "Collection", window);
     upgrades_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 370), m_font, "Upgrades", window);
     save_quit_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 460), m_font, "Save/Quit", window);
+
+    open_button = std::make_shared<Button>(sf::Vector2f(200, 80), sf::Vector2f(300, 500), m_font, "Open Box", window);
+    buy_box_button = std::make_shared<Button>(sf::Vector2f(200, 80), sf::Vector2f(10, 10), m_font, "Buy Next Box", window);
+
+
+    back_button = std::make_shared<Button>(sf::Vector2f(75, 60), sf::Vector2f(715, 10), m_font, "Back", window);
 }
 
 
@@ -153,9 +162,6 @@ void LootBoxGUI::saveQuitLogic()
 
 void LootBoxGUI::run()
 {
-    Screen state = Screen::InitialScreen;
-
-
     while (window.isOpen())
     {
         window.clear();
@@ -173,6 +179,28 @@ void LootBoxGUI::run()
             collection_button->draw();
             upgrades_button->draw();
             save_quit_button->draw();
+        }
+        else if (state == Screen::OpenScreen)
+        {
+            open_button->draw();
+            back_button->draw();
+        }
+        else if (state == Screen::ShopScreen)
+        {
+            buy_box_button->draw();
+            back_button->draw();
+        }
+        else if (state == Screen::InventoryScreen)
+        {
+            back_button->draw();
+        }
+        else if (state == Screen::CollectionScreen)
+        {
+            back_button->draw();
+        }
+        else if (state == Screen::UpgradesScreen)
+        {
+            back_button->draw();
         }
 
         window.display();
@@ -202,11 +230,13 @@ void LootBoxGUI::run()
             {
                 if (open_box_button->isClicked(event.value()))
                 {
-                    openBoxLogic();
+                    state = Screen::OpenScreen;
+                    //openBoxLogic();
                 }
                 else if (shop_button->isClicked(event.value()))
                 {
-                    shopLogic();
+                    state = Screen::ShopScreen;
+                    //shopLogic();
                 }
                 else if (inventory_button->isClicked(event.value()))
                 {
@@ -223,8 +253,38 @@ void LootBoxGUI::run()
                 else if (save_quit_button->isClicked(event.value()))
                 {
                     saveQuitLogic();
+                    window.close();
                 }
             }
+            else if (state == Screen::OpenScreen)
+            {
+                if (open_button->isClicked(event.value()))
+                {
+                    openBoxLogic();
+                }
+                else if (back_button->isClicked(event.value()))
+                {
+                    state = Screen::MainMenuScreen;
+                }
+            }
+            else if (state == Screen::ShopScreen)
+            {
+                if (buy_box_button->isClicked(event.value()))
+                {
+                    shopLogic();
+                }
+                else if (back_button->isClicked(event.value()))
+                {
+                    state = Screen::MainMenuScreen;
+                }
+            }
+            //else if (state != Screen::InitialScreen && state != Screen::MainMenuScreen)
+            //{
+            //    if (back_button->isClicked(event.value()))
+            //    {
+            //        state = Screen::MainMenuScreen;
+            //    }
+            //}
         }
     }
 }
