@@ -31,6 +31,11 @@ LootBoxGUI::LootBoxGUI() :
     buy_box_button = std::make_shared<Button>(sf::Vector2f(200, 80), sf::Vector2f(10, 10), m_font, "Buy Next Box", window);
 
 
+    sell_all_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "Sell All", window);
+    sell_basic_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Sell Basic", window);
+    sell_common_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 190), m_font, "Sell Common", window);
+    sell_rare_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 280), m_font, "Sell Rare", window);
+
     back_button = std::make_shared<Button>(sf::Vector2f(75, 60), sf::Vector2f(715, 10), m_font, "Back", window);
 }
 
@@ -107,9 +112,10 @@ void LootBoxGUI::shopLogic()
     }
 }
 
-void LootBoxGUI::inventoryLogic()
+void LootBoxGUI::inventoryLogic(int option)
 {
-    inv.sellItem(upgrades);
+    inv.showInventory();
+    inv.sellItem(upgrades, option);
 }
 
 void LootBoxGUI::collectionLogic()
@@ -192,6 +198,10 @@ void LootBoxGUI::run()
         }
         else if (state == Screen::InventoryScreen)
         {
+            sell_all_button->draw();
+            sell_basic_button->draw();
+            sell_common_button->draw();
+            sell_rare_button->draw();
             back_button->draw();
         }
         else if (state == Screen::CollectionScreen)
@@ -204,6 +214,10 @@ void LootBoxGUI::run()
         }
 
         window.display();
+
+
+
+
 
         auto event = window.waitEvent();
 
@@ -226,6 +240,8 @@ void LootBoxGUI::run()
                     state = Screen::MainMenuScreen;
                 }
             }
+
+
             else if (state == Screen::MainMenuScreen)
             {
                 if (open_box_button->isClicked(event.value()))
@@ -240,7 +256,8 @@ void LootBoxGUI::run()
                 }
                 else if (inventory_button->isClicked(event.value()))
                 {
-                    inventoryLogic();
+                    state = Screen::InventoryScreen;
+                    //inventoryLogic();
                 }
                 else if (collection_button->isClicked(event.value()))
                 {
@@ -256,6 +273,8 @@ void LootBoxGUI::run()
                     window.close();
                 }
             }
+
+
             else if (state == Screen::OpenScreen)
             {
                 if (open_button->isClicked(event.value()))
@@ -272,6 +291,29 @@ void LootBoxGUI::run()
                 if (buy_box_button->isClicked(event.value()))
                 {
                     shopLogic();
+                }
+                else if (back_button->isClicked(event.value()))
+                {
+                    state = Screen::MainMenuScreen;
+                }
+            }
+            else if (state == Screen::InventoryScreen)
+            {
+                if (sell_all_button->isClicked(event.value()))
+                {
+                    inventoryLogic(1); //sell all
+                }
+                else if (sell_basic_button->isClicked(event.value()))
+                {
+                    inventoryLogic(2); //sell basic
+                }
+                else if (sell_common_button->isClicked(event.value()))
+                {
+                    inventoryLogic(3); //sell common
+                }
+                else if (sell_rare_button->isClicked(event.value()))
+                {
+                    inventoryLogic(4); //sell rare
                 }
                 else if (back_button->isClicked(event.value()))
                 {

@@ -16,5 +16,5 @@ public:
 
 	void addItem(Item item);
 	void showInventory();
-	void sellItem(Upgrades& upgrade);
+	void sellItem(Upgrades& upgrade, int option);
 };

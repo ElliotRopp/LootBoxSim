@@ -113,6 +113,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>false</TreatWarningAsError>
       <AdditionalIncludeDirectories>C:\Git\Dependencies\SFML-3.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +132,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Git\Dependencies\SFML-3.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

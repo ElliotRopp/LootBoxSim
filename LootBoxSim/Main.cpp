@@ -239,7 +239,7 @@ int main()
 		}
 		else if (input == "3") //inventory and sell
 		{
-			inv.sellItem(upgrades);
+			inv.sellItem(upgrades, 1);
 			clearInputBuffer();
 			waitForEnter();
 		}

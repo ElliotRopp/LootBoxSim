@@ -40,7 +40,13 @@ private:
     std::shared_ptr<Button> save_quit_button;
 
     std::shared_ptr<Button> open_button;
+    
     std::shared_ptr<Button> buy_box_button;
+
+    std::shared_ptr<Button> sell_all_button;
+    std::shared_ptr<Button> sell_basic_button;
+    std::shared_ptr<Button> sell_common_button;
+    std::shared_ptr<Button> sell_rare_button;
 
 
     std::shared_ptr<Button> back_button;
@@ -55,7 +61,7 @@ public:
 
     void openBoxLogic();
     void shopLogic();
-    void inventoryLogic();
+    void inventoryLogic(int option);
     void collectionLogic();
     void upgradesLogic();
     void saveQuitLogic();
