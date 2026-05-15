@@ -50,6 +50,11 @@ private:
     std::shared_ptr<Button> sell_common_button;
     std::shared_ptr<Button> sell_rare_button;
 
+    std::shared_ptr<Button> upgrade_luck_button;
+    std::shared_ptr<Button> upgrade_sell_button;
+    std::shared_ptr<Button> upgrade_inventory_button;
+    std::shared_ptr<Button> upgrade_open_button;
+
 
     std::shared_ptr<Button> back_button;
 
@@ -62,9 +67,9 @@ public:
     void continueLogic();
 
     void openBoxLogic();
-    void shopLogic();
+    void shopLogic(int choice);
     void inventoryLogic(int option);
     void collectionLogic();
-    void upgradesLogic();
+    void upgradesLogic(int choice);
     void saveQuitLogic();
 };

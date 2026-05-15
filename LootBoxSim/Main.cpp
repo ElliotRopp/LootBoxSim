@@ -5,6 +5,10 @@
 // \033[0m
 
 
+
+// PROGRESSION IS TOO FAST
+
+
 /***********    IDEAS    ***********\
 
 	* QOL changes
@@ -53,6 +57,7 @@
 /***********    IN PROGRESS    ***********\
 
 	* fix warnings
+	* GUI
 
 /*****************************************/
 

@@ -21,7 +21,7 @@ LootBoxGUI::LootBoxGUI() :
     //result_text.setFont(m_font);
     result_text.setCharacterSize(28);
     result_text.setPosition(sf::Vector2f(250, 200));
-    result_text.setFillColor(sf::Color::White);
+    //result_text.setFillColor(sf::Color::White);
 
 
     new_game_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "New Game", window);
@@ -43,6 +43,11 @@ LootBoxGUI::LootBoxGUI() :
     sell_basic_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Sell Basic", window);
     sell_common_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 190), m_font, "Sell Common", window);
     sell_rare_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 280), m_font, "Sell Rare", window);
+
+    upgrade_luck_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "Luck Boost", window);
+    upgrade_sell_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Sell Boost", window);
+    upgrade_inventory_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 190), m_font, "Inventory boost", window);
+    upgrade_open_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 280), m_font, "Multi Open", window);
 
     back_button = std::make_shared<Button>(sf::Vector2f(75, 60), sf::Vector2f(715, 10), m_font, "Back", window);
 }
@@ -88,13 +93,13 @@ void LootBoxGUI::openBoxLogic()
     BoxType& boxtype = shop.boxes[shop.current_box];
 
     int opens = upgrades.getMultiOpenAmount();
-    bool isnew;
+    bool has = false;
     Item reward;
 
     for (int i = 0; i < opens; i++)
     {
         reward = box.open(boxtype.table, boxtype.name, collection, upgrades);
-        isnew = collection.has(reward.name);
+        has = collection.has(reward.name);
         collection.add(reward.name, reward.rarity);
         inv.addItem(reward);
     }
@@ -105,7 +110,7 @@ void LootBoxGUI::openBoxLogic()
     result += "Rolled: ";
     result += reward.name + " (" + std::to_string(reward.value) + ")";
 
-    if (!isnew)
+    if (!has)
     {
         result += " [NEW]";
     }
@@ -114,14 +119,12 @@ void LootBoxGUI::openBoxLogic()
 }
 
 
-void LootBoxGUI::shopLogic() 
+void LootBoxGUI::shopLogic(int choice) 
 {
     std::cout << "\nOPENED SHOP\n";
 
     shop.showShop(inv, upgrades.luck_level);
 
-    int choice;
-    std::cin >> choice;
 
     if (choice > 0)
     {
@@ -138,7 +141,7 @@ void LootBoxGUI::shopLogic()
 
 void LootBoxGUI::inventoryLogic(int option)
 {
-    inv.showInventory();
+    //inv.showInventory();
     inv.sellItem(upgrades, option);
 }
 
@@ -147,35 +150,32 @@ void LootBoxGUI::collectionLogic()
     collection.show();
 }
 
-void LootBoxGUI::upgradesLogic()
+void LootBoxGUI::upgradesLogic(int choice)
 {
     while (true)
     {
-        upgrades.show(inv.coins);
-
-        int choice;
-        std::cin >> choice;
+        //upgrades.show(inv.coins);
 
         if (choice == 1)
         {
             upgrades.buyLuck(inv.coins);
+            break;
         }
         if (choice == 2)
         {
             upgrades.buySell(inv.coins);
+            break;
         }
         if (choice == 3)
         {
             upgrades.buyInventory(inv.coins);
             inv.limit = static_cast<uint64_t>(100 + upgrades.getInventoryBonus());
+            break;
         }
         if (choice == 4)
         {
             upgrades.buyMultiOpen(inv.coins);
-        }
-        if (choice == 5)
-        {
-            return;
+            break;
         }
     }
 }
@@ -235,6 +235,10 @@ void LootBoxGUI::run()
         }
         else if (state == Screen::UpgradesScreen)
         {
+            upgrade_luck_button->draw();
+            upgrade_sell_button->draw();
+            upgrade_inventory_button->draw();
+            upgrade_open_button->draw();
             back_button->draw();
         }
 
@@ -281,16 +285,20 @@ void LootBoxGUI::run()
                 }
                 else if (inventory_button->isClicked(event.value()))
                 {
+                    inv.showInventory();
                     state = Screen::InventoryScreen;
                     //inventoryLogic();
                 }
                 else if (collection_button->isClicked(event.value()))
                 {
+                    state = Screen::CollectionScreen;
                     collectionLogic();
                 }
                 else if (upgrades_button->isClicked(event.value()))
                 {
-                    upgradesLogic();
+                    upgrades.show(inv.coins);
+                    state = Screen::UpgradesScreen;
+                    //upgradesLogic();
                 }
                 else if (save_quit_button->isClicked(event.value()))
                 {
@@ -315,7 +323,7 @@ void LootBoxGUI::run()
             {
                 if (buy_box_button->isClicked(event.value()))
                 {
-                    shopLogic();
+                    shopLogic(1);
                 }
                 else if (back_button->isClicked(event.value()))
                 {
@@ -345,6 +353,31 @@ void LootBoxGUI::run()
                     state = Screen::MainMenuScreen;
                 }
             }
+            else if (state == Screen::UpgradesScreen)
+            {
+                if (upgrade_luck_button->isClicked(event.value()))
+                {
+                    upgradesLogic(1); //luck boost
+                }
+                else if (upgrade_sell_button->isClicked(event.value()))
+                {
+                    upgradesLogic(2); //sell boost
+                }
+                else if (upgrade_inventory_button->isClicked(event.value()))
+                {
+                    upgradesLogic(3); //inventory size
+                }
+                else if (upgrade_open_button->isClicked(event.value()))
+                {
+                    upgradesLogic(4); //multi open
+                }
+                else if (back_button->isClicked(event.value()))
+                {
+                    state = Screen::MainMenuScreen;
+                }
+            }
+
+
             //else if (state != Screen::InitialScreen && state != Screen::MainMenuScreen)
             //{
             //    if (back_button->isClicked(event.value()))
