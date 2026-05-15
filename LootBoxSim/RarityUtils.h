@@ -1,7 +1,8 @@
+#pragma once
+
 #include <string>
 #include "Rarity.h"
-
-#pragma once
+#include <SFML/Graphics.hpp>
 
 
 namespace RarityUtils
@@ -9,4 +10,6 @@ namespace RarityUtils
 	std::string getColor(Rarity r);
 	std::string getName(Rarity r);
 	Rarity StringToRarity(std::string rarity_str);
+
+	sf::Color getSFMLColor(Rarity r);
 }

@@ -7,6 +7,8 @@
 #include "Collection.h"
 #include "SaveSystem.h"
 #include "Screen.h"
+#include "RarityUtils.h"
+#include "Rarity.h"
 
 #include <SFML/Graphics.hpp>
 #include <memory>

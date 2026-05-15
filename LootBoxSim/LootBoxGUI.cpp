@@ -17,11 +17,9 @@ LootBoxGUI::LootBoxGUI() :
         std::cout << "Failed to load font\n";
     }
 
-
-    //result_text.setFont(m_font);
     result_text.setCharacterSize(28);
     result_text.setPosition(sf::Vector2f(250, 200));
-    //result_text.setFillColor(sf::Color::White);
+
 
 
     new_game_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "New Game", window);
@@ -116,6 +114,7 @@ void LootBoxGUI::openBoxLogic()
     }
 
     result_text.setString(result);
+    result_text.setFillColor(RarityUtils::getSFMLColor(reward.rarity));
 }
 
 

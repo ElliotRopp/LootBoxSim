@@ -47,3 +47,21 @@ Rarity RarityUtils::StringToRarity(std::string rarity_str)
 
     return Rarity::Common;
 }
+
+
+
+sf::Color RarityUtils::getSFMLColor(Rarity r)
+{
+    switch (r)
+    {
+        case Rarity::Basic:     return sf::Color(120, 129, 120);
+        case Rarity::Common:    return sf::Color(0, 200, 0);
+        case Rarity::Rare:      return sf::Color(0, 120, 255);     
+        case Rarity::Epic:      return sf::Color(180, 0, 255);    
+        case Rarity::Legendary: return sf::Color(255, 180, 0);     
+        case Rarity::Mythic:    return sf::Color(255, 60, 60);   
+        case Rarity::Celestial: return sf::Color(0, 200, 200); 
+    }
+
+    return sf::Color::White;
+}
