@@ -212,7 +212,6 @@ Item LootBox::open(DropTable& table, const std::string& box_name, Collection& co
 			std::cout << " [NEW]\n";
 		}
 
-
 		return item;
 }
 

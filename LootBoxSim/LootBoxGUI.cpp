@@ -6,7 +6,8 @@
 
 
 LootBoxGUI::LootBoxGUI() : 
-    window(sf::VideoMode({ 800,600 }), "LootBox Sim")
+    window(sf::VideoMode({ 800,600 }), "LootBox Sim"),
+    result_text(m_font)
 {
 
     state = Screen::InitialScreen;
@@ -15,6 +16,13 @@ LootBoxGUI::LootBoxGUI() :
     {
         std::cout << "Failed to load font\n";
     }
+
+
+    //result_text.setFont(m_font);
+    result_text.setCharacterSize(28);
+    result_text.setPosition(sf::Vector2f(250, 200));
+    result_text.setFillColor(sf::Color::White);
+
 
     new_game_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "New Game", window);
     continue_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Continue", window);
@@ -80,15 +88,31 @@ void LootBoxGUI::openBoxLogic()
     BoxType& boxtype = shop.boxes[shop.current_box];
 
     int opens = upgrades.getMultiOpenAmount();
+    bool isnew;
+    Item reward;
 
     for (int i = 0; i < opens; i++)
     {
-        Item reward = box.open(boxtype.table, boxtype.name, collection, upgrades);
-
+        reward = box.open(boxtype.table, boxtype.name, collection, upgrades);
+        isnew = collection.has(reward.name);
         collection.add(reward.name, reward.rarity);
         inv.addItem(reward);
     }
+    
+    std::string result;
+
+    result += "Opened " + boxtype.name + "\n\n";
+    result += "Rolled: ";
+    result += reward.name + " (" + std::to_string(reward.value) + ")";
+
+    if (!isnew)
+    {
+        result += " [NEW]";
+    }
+
+    result_text.setString(result);
 }
+
 
 void LootBoxGUI::shopLogic() 
 {
@@ -190,6 +214,7 @@ void LootBoxGUI::run()
         {
             open_button->draw();
             back_button->draw();
+            window.draw(result_text);
         }
         else if (state == Screen::ShopScreen)
         {

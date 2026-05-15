@@ -27,6 +27,8 @@ private:
 
     sf::RenderWindow window;
     sf::Font m_font;
+    sf::Text result_text;
+
 
     std::shared_ptr<Button> new_game_button;
     std::shared_ptr<Button> continue_button;
