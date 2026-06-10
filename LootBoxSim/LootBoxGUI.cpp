@@ -41,6 +41,9 @@ LootBoxGUI::LootBoxGUI() :
     sell_basic_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Sell Basic", window);
     sell_common_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 190), m_font, "Sell Common", window);
     sell_rare_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 280), m_font, "Sell Rare", window);
+    previous_button = std::make_shared<Button>(sf::Vector2f(100, 50), sf::Vector2f(250, 520), m_font, "Prev.", window);
+    next_button = std::make_shared<Button>(sf::Vector2f(100, 50), sf::Vector2f(450, 520), m_font, "Next", window);
+
 
     upgrade_luck_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 10), m_font, "Luck Boost", window);
     upgrade_sell_button = std::make_shared<Button>(sf::Vector2f(150, 60), sf::Vector2f(10, 100), m_font, "Sell Boost", window);
@@ -144,6 +147,28 @@ void LootBoxGUI::inventoryLogic(int option)
     inv.sellItem(upgrades, option);
 }
 
+void LootBoxGUI::drawItems()
+{
+    int start = inv_page * items_per_page;
+    int end = std::min(start + items_per_page, static_cast<int>(inv.items.size()));
+
+    float y = 20.f;
+
+    for (int i = start; i < end; i++)
+    {
+        sf::Text text(m_font);
+
+        text.setString(inv.items[i].name + " (" + std::to_string(inv.items[i].value) + ")");
+        text.setCharacterSize(20);
+        text.setFillColor(RarityUtils::getSFMLColor(inv.items[i].rarity));
+        text.setPosition({ 250.f, y });
+
+        window.draw(text);
+
+        y += 30.f;
+    }
+}
+
 void LootBoxGUI::collectionLogic()
 {
     collection.show();
@@ -227,6 +252,10 @@ void LootBoxGUI::run()
             sell_common_button->draw();
             sell_rare_button->draw();
             back_button->draw();
+            previous_button->draw();
+            next_button->draw();
+
+            drawItems();
         }
         else if (state == Screen::CollectionScreen)
         {
@@ -331,7 +360,25 @@ void LootBoxGUI::run()
             }
             else if (state == Screen::InventoryScreen)
             {
-                if (sell_all_button->isClicked(event.value()))
+                if (previous_button->isClicked(event.value()))
+                {
+                    std::cout << "prev\n";
+                    if (inv_page > 0)
+                    {
+                        inv_page--;
+                    }
+                }
+                else if(next_button->isClicked(event.value()))
+                {
+                    std::cout << "next\n";
+                    int max_page = (static_cast<int>(inv.items.size()) - 1) / items_per_page;
+                    
+                    if (inv_page < max_page)
+                    {
+                        inv_page++;
+                    }
+                }
+                else if (sell_all_button->isClicked(event.value()))
                 {
                     inventoryLogic(1); //sell all
                 }

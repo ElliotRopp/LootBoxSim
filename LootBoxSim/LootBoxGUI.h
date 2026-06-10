@@ -29,12 +29,15 @@ private:
 
     sf::RenderWindow window;
     sf::Font m_font;
+
+
     sf::Text result_text;
+
 
 
     std::shared_ptr<Button> new_game_button;
     std::shared_ptr<Button> continue_button;
-    std::shared_ptr<Button> select_save_button; // need to make this screen still
+    //std::shared_ptr<Button> select_save_button; // need to make this screen still
 
     std::shared_ptr<Button> open_box_button;
     std::shared_ptr<Button> shop_button;
@@ -51,6 +54,8 @@ private:
     std::shared_ptr<Button> sell_basic_button;
     std::shared_ptr<Button> sell_common_button;
     std::shared_ptr<Button> sell_rare_button;
+    std::shared_ptr<Button> previous_button;
+    std::shared_ptr<Button> next_button;
 
     std::shared_ptr<Button> upgrade_luck_button;
     std::shared_ptr<Button> upgrade_sell_button;
@@ -60,6 +65,10 @@ private:
 
     std::shared_ptr<Button> back_button;
 
+
+    const int items_per_page = 15;
+    int inv_page = 0;
+
 public:
     LootBoxGUI();
 
@@ -67,6 +76,8 @@ public:
 
     void newGameLogic();
     void continueLogic();
+
+    void drawItems();
 
     void openBoxLogic();
     void shopLogic(int choice);
