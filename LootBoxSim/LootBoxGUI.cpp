@@ -147,7 +147,7 @@ void LootBoxGUI::inventoryLogic(int option)
     inv.sellItem(upgrades, option);
 }
 
-void LootBoxGUI::drawItems()
+int LootBoxGUI::drawItems()
 {
     int start = inv_page * items_per_page;
     int end = std::min(start + items_per_page, static_cast<int>(inv.items.size()));
@@ -167,6 +167,22 @@ void LootBoxGUI::drawItems()
 
         y += 30.f;
     }
+
+
+    if (start == 0 && end == inv.items.size())
+    {
+        return 3;
+    }
+    if (end == inv.items.size())
+    {
+        return 1;   // last page
+    }
+    if (start == 0)
+    {
+        return 2;   // first page
+    }
+
+    return 0;
 }
 
 void LootBoxGUI::collectionLogic()
@@ -212,71 +228,90 @@ void LootBoxGUI::saveQuitLogic()
 }
 
 
+void LootBoxGUI::drawStuff(Screen s_state)
+{
+    window.clear();
+
+    if (s_state == Screen::InitialScreen)
+    {
+        new_game_button->draw();
+        continue_button->draw();
+    }
+    else if (s_state == Screen::MainMenuScreen)
+    {
+        open_box_button->draw();
+        shop_button->draw();
+        inventory_button->draw();
+        collection_button->draw();
+        upgrades_button->draw();
+        save_quit_button->draw();
+    }
+    else if (s_state == Screen::OpenScreen)
+    {
+        open_button->draw();
+        back_button->draw();
+        window.draw(result_text);
+    }
+    else if (s_state == Screen::ShopScreen)
+    {
+        buy_box_button->draw();
+        back_button->draw();
+    }
+    else if (s_state == Screen::InventoryScreen)
+    {
+        sell_all_button->draw();
+        sell_basic_button->draw();
+        sell_common_button->draw();
+        sell_rare_button->draw();
+        back_button->draw();
+
+        int page = drawItems();
+
+        if (page != 3)
+        {
+            if (page != 1)
+            {
+                next_button->draw();
+            }
+            if (page != 2)
+            {
+                previous_button->draw();
+            }
+        }
+    }
+    else if (s_state == Screen::CollectionScreen)
+    {
+        back_button->draw();
+    }
+    else if (s_state == Screen::UpgradesScreen)
+    {
+        upgrade_luck_button->draw();
+        upgrade_sell_button->draw();
+        upgrade_inventory_button->draw();
+        upgrade_open_button->draw();
+        back_button->draw();
+    }
+
+    window.display();
+}
 
 
 void LootBoxGUI::run()
 {
+    window.clear();
+
+    if (state == Screen::InitialScreen)
+    {
+        new_game_button->draw();
+        continue_button->draw();
+    }
+
+    window.display();
+
     while (window.isOpen())
     {
-        window.clear();
-
-        if (state == Screen::InitialScreen)
-        {
-            new_game_button->draw();
-            continue_button->draw();
-        }
-        else if (state == Screen::MainMenuScreen)
-        {
-            open_box_button->draw();
-            shop_button->draw();
-            inventory_button->draw();
-            collection_button->draw();
-            upgrades_button->draw();
-            save_quit_button->draw();
-        }
-        else if (state == Screen::OpenScreen)
-        {
-            open_button->draw();
-            back_button->draw();
-            window.draw(result_text);
-        }
-        else if (state == Screen::ShopScreen)
-        {
-            buy_box_button->draw();
-            back_button->draw();
-        }
-        else if (state == Screen::InventoryScreen)
-        {
-            sell_all_button->draw();
-            sell_basic_button->draw();
-            sell_common_button->draw();
-            sell_rare_button->draw();
-            back_button->draw();
-            previous_button->draw();
-            next_button->draw();
-
-            drawItems();
-        }
-        else if (state == Screen::CollectionScreen)
-        {
-            back_button->draw();
-        }
-        else if (state == Screen::UpgradesScreen)
-        {
-            upgrade_luck_button->draw();
-            upgrade_sell_button->draw();
-            upgrade_inventory_button->draw();
-            upgrade_open_button->draw();
-            back_button->draw();
-        }
-
-        window.display();
-
-
-
-
-
         auto event = window.waitEvent();
+        std::cout << "event" << std::endl;
 
         if (event->is<sf::Event::Closed>())
         {
@@ -284,6 +319,8 @@ void LootBoxGUI::run()
         }
         else
         {
+            bool need_redraw = true;
+
             if (state == Screen::InitialScreen)
             {
                 if (new_game_button->isClicked(event.value()))
@@ -320,7 +357,7 @@ void LootBoxGUI::run()
                 else if (collection_button->isClicked(event.value()))
                 {
                     state = Screen::CollectionScreen;
-                    collectionLogic();
+                    //collectionLogic();
                 }
                 else if (upgrades_button->isClicked(event.value()))
                 {
@@ -332,6 +369,11 @@ void LootBoxGUI::run()
                 {
                     saveQuitLogic();
                     window.close();
+                }
+
+                else
+                {
+                    need_redraw = false;
                 }
             }
 
@@ -346,7 +388,14 @@ void LootBoxGUI::run()
                 {
                     state = Screen::MainMenuScreen;
                 }
+
+                else
+                {
+                    need_redraw = false;
+                }
             }
+
+
             else if (state == Screen::ShopScreen)
             {
                 if (buy_box_button->isClicked(event.value()))
@@ -357,12 +406,18 @@ void LootBoxGUI::run()
                 {
                     state = Screen::MainMenuScreen;
                 }
+
+                else
+                {
+                    need_redraw = false;
+                }
             }
+
+
             else if (state == Screen::InventoryScreen)
             {
                 if (previous_button->isClicked(event.value()))
                 {
-                    std::cout << "prev\n";
                     if (inv_page > 0)
                     {
                         inv_page--;
@@ -370,7 +425,6 @@ void LootBoxGUI::run()
                 }
                 else if(next_button->isClicked(event.value()))
                 {
-                    std::cout << "next\n";
                     int max_page = (static_cast<int>(inv.items.size()) - 1) / items_per_page;
                     
                     if (inv_page < max_page)
@@ -398,7 +452,28 @@ void LootBoxGUI::run()
                 {
                     state = Screen::MainMenuScreen;
                 }
+
+                else
+                {
+                    need_redraw = false;
+                }
             }
+
+
+            else if (state == Screen::CollectionScreen)
+            {
+                if (back_button->isClicked(event.value()))
+                {
+                    state = Screen::MainMenuScreen;
+                }
+
+                else
+                {
+                    need_redraw = false;
+                }
+            }
+
+
             else if (state == Screen::UpgradesScreen)
             {
                 if (upgrade_luck_button->isClicked(event.value()))
@@ -421,16 +496,24 @@ void LootBoxGUI::run()
                 {
                     state = Screen::MainMenuScreen;
                 }
+
+                else
+                {
+                    need_redraw = false;
+                }
             }
 
 
-            //else if (state != Screen::InitialScreen && state != Screen::MainMenuScreen)
-            //{
-            //    if (back_button->isClicked(event.value()))
-            //    {
-            //        state = Screen::MainMenuScreen;
-            //    }
-            //}
+            else
+            {
+                need_redraw = false;    // not an event that does stuff
+            }
+
+
+            if (need_redraw)
+            {
+                drawStuff(state);
+            }
         }
     }
 }

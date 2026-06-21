@@ -37,7 +37,7 @@ private:
 
     std::shared_ptr<Button> new_game_button;
     std::shared_ptr<Button> continue_button;
-    //std::shared_ptr<Button> select_save_button; // need to make this screen still
+    //std::shared_ptr<Button> select_save_button;
 
     std::shared_ptr<Button> open_box_button;
     std::shared_ptr<Button> shop_button;
@@ -74,10 +74,12 @@ public:
 
     void run();
 
+    void drawStuff(Screen s_state);
+
     void newGameLogic();
     void continueLogic();
 
-    void drawItems();
+    int drawItems();
 
     void openBoxLogic();
     void shopLogic(int choice);
