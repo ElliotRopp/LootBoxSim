@@ -5,9 +5,9 @@
 
 
 
-LootBoxGUI::LootBoxGUI() : 
+LootBoxGUI::LootBoxGUI() :
     window(sf::VideoMode({ 800,600 }), "LootBox Sim"),
-    result_text(m_font)
+    result_text(m_font), p_coins(m_font)
 {
 
     state = Screen::InitialScreen;
@@ -16,6 +16,10 @@ LootBoxGUI::LootBoxGUI() :
     {
         std::cout << "Failed to load font\n";
     }
+
+
+    p_coins.setCharacterSize(20);
+    //p_coins.setPosition(sf::Vector2f(670, 10));
 
     result_text.setCharacterSize(28);
     result_text.setPosition(sf::Vector2f(250, 200));
@@ -245,6 +249,10 @@ void LootBoxGUI::drawStuff(Screen s_state)
         collection_button->draw();
         upgrades_button->draw();
         save_quit_button->draw();
+
+        p_coins.setPosition(sf::Vector2f(670, 10));
+        p_coins.setString("Coins: " + std::to_string((static_cast<int>(inv.coins))));
+        window.draw(p_coins);
     }
     else if (s_state == Screen::OpenScreen)
     {
@@ -256,6 +264,63 @@ void LootBoxGUI::drawStuff(Screen s_state)
     {
         buy_box_button->draw();
         back_button->draw();
+
+        float startY = 300.f;
+
+        BoxType& current = shop.boxes[shop.current_box];
+
+        if (shop.current_box >= shop.boxes.size() - 1)
+        {
+            sf::Text maxText(m_font);
+            maxText.setString("MAX TIER");
+            maxText.setPosition({ 300.f, 220.f });
+            window.draw(maxText);
+
+            return;
+        }
+        BoxType& next = shop.boxes[shop.current_box + 1];
+
+
+        for (size_t i = 0; i < rarities.size(); i++)
+        {
+            sf::Text rarityText(m_font);
+            rarityText.setString(RarityUtils::getName(rarities[i]));
+            rarityText.setPosition({ 100.f, startY + i * 40.f });
+            rarityText.setFillColor(RarityUtils::getSFMLColor(rarities[i]));
+
+            int currentChanceValue = current.table.getAdjustedChance(rarities[i], upgrades.luck_level, current.name);
+            int nextChanceValue = next.table.getAdjustedChance(rarities[i], upgrades.luck_level, next.name);
+
+            sf::Text currentChance(m_font);
+            std::ostringstream ss;
+            ss << std::fixed << std::setprecision(2) << currentChanceValue;
+            currentChance.setString(ss.str() + "%");
+            currentChance.setPosition({ 300.f, startY + i * 40.f });
+
+            sf::Text nextChance(m_font);
+            std::ostringstream ss1;
+            ss1 << std::fixed << std::setprecision(2) << nextChanceValue;
+            nextChance.setString(ss1.str() + "%");
+            nextChance.setPosition({ 500.f, startY + i * 40.f });
+
+            sf::Text currentBoxText(m_font);
+            currentBoxText.setString(current.name);
+            currentBoxText.setPosition({ 250.f, 220.f });
+
+            sf::Text nextBoxText(m_font);
+            nextBoxText.setString(next.name);
+            nextBoxText.setPosition({ 500.f, 220.f });
+
+            p_coins.setPosition(sf::Vector2f(400, 10));
+            p_coins.setString("Coins: " + std::to_string((static_cast<int>(inv.coins))));
+
+            window.draw(currentBoxText);
+            window.draw(nextBoxText);
+            window.draw(rarityText);
+            window.draw(currentChance);
+            window.draw(nextChance);
+            window.draw(p_coins);
+        }
     }
     else if (s_state == Screen::InventoryScreen)
     {
@@ -311,7 +376,6 @@ void LootBoxGUI::run()
     while (window.isOpen())
     {
         auto event = window.waitEvent();
-        std::cout << "event" << std::endl;
 
         if (event->is<sf::Event::Closed>())
         {

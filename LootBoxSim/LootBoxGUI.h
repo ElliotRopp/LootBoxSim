@@ -25,11 +25,24 @@ private:
     Upgrades upgrades;
 
 
+    std::vector<Rarity> rarities =
+    {
+        Rarity::Basic,
+        Rarity::Common,
+        Rarity::Rare,
+        Rarity::Epic,
+        Rarity::Legendary,
+        Rarity::Mythic,
+        Rarity::Celestial
+    };
+
+
     Screen state;
 
     sf::RenderWindow window;
     sf::Font m_font;
 
+    sf::Text p_coins;
 
     sf::Text result_text;
 
